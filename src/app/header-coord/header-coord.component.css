@@ -1,0 +1,12 @@
+@media(min-width: 1199px){
+  .username{
+    margin-left: 12rem !important;
+  }
+}
+
+@media(min-width: 1399px){
+  .username{
+    margin-left: 23rem !important;
+  }
+}
+
