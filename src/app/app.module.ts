@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderCoordComponent } from './header-coord/header-coord.component';
 import { CoordinatorComponent } from './coordinator/coordinator.component';
+import { RegisterProfessorComponent } from './coordinator/register-professor/register-professor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ShowProfessorComponent } from './coordinator/show-professor/show-professor.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { CoordinatorComponent } from './coordinator/coordinator.component';
     StudentComponent,
     LoginComponent,
     HeaderCoordComponent,
-    CoordinatorComponent
+    CoordinatorComponent,
+    RegisterProfessorComponent,
+    ShowProfessorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

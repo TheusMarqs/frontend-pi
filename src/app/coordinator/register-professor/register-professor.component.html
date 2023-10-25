@@ -1,0 +1,49 @@
+<app-header-coord></app-header-coord>
+
+<div class="row mt-5">
+    <div class="col-6 m-auto">
+        <form [formGroup]="formGroupProfessor">
+            <div class="mb-3">
+                <div class="display-6 text-center">
+                    Cadastro de Professores
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome:</label>
+                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+                <div *ngIf="submitted && name.invalid">
+                    <small class="text-danger">Nome inválido!</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                <div *ngIf="submitted && email.invalid">
+                    <small class="text-danger">Email inválido!</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    placeholder="Senha">
+                <div *ngIf="submitted && password.invalid">
+                    <small class="text-danger">Senha inválida!</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Professor ativo</label>
+                <div class="form-check form-switch mt-2 ms-1">
+                    <input class="form-check-input" style="width: 50px; height: 25px;" formControlName="condition" type="checkbox" id="condition" checked>
+                </div>
+                <div *ngIf="submitted && condition.invalid">
+                    <small class="text-danger">Condição inválida!</small>
+                </div>
+                
+            </div>
+            <div class="mb-3 d-flex justify-content-end gap-2">
+                <button class="btn btn-success" (click)="save()">Salvar</button>
+                <button class="btn btn-danger" (click)="cancel()">Limpar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <nav class="navbar navbar-expand-lg bg-white pe-3" style="height: 5rem;">
-    <a class="navbar-brand txt-fatec txt-inter fs-3 mb-1 ms-4" href="">Fatec</a>
+    <a class="navbar-brand txt-fatec txt-inter fs-3 mb-1 ms-4" [routerLink]="['']">Fatec</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse bg-white header" id="navbarNav">
       <ul class="navbar-nav gap-2">
         <li class="nav-item">
-          <a class="nav-link active txt-inter fs-5 fs-sm-2" aria-current="page" href="">Home</a>
+          <a class="nav-link active txt-inter fs-5 fs-sm-2" aria-current="page" [routerLink]="['']">Home</a>
         </li>
 
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -32,8 +32,8 @@
                 Professores
               </a>
               <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Exibir</a></li>
+                <li><a class="dropdown-item" [routerLink]="['cadastro-professor']">Cadastrar</a></li>
+                <li><a class="dropdown-item" [routerLink]="['show-professor']">Exibir</a></li>
               </ul>
             </li>
           </ul>
@@ -106,7 +106,7 @@
           </div>
         </li>
         <li class="nav-item mt-1">
-          <a href="">
+          <a [routerLink]="['']">
             <button class="btn btn-fatec">Sair</button>
           </a>
         </li>
