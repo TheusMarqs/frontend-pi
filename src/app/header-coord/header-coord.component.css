@@ -1,12 +1,41 @@
 @media(min-width: 1199px){
   .username{
-    margin-left: 12rem !important;
+    margin-left: 4rem !important;
   }
 }
 
 @media(min-width: 1399px){
   .username{
-    margin-left: 23rem !important;
+    margin-left: 15rem !important;
   }
 }
 
+@media(max-width: 992px){
+  .navbar-nav{
+    margin-left: 20px;
+    padding-top: 20px;
+  }
+
+  .username{
+    margin-left: 0 !important;
+  }
+
+  .header{
+    padding-bottom: 20px;
+  }
+}
+
+@media(min-width: 992px){
+  .mobile-link{
+    display: none;
+  }
+}
+
+@media(min-width: 992px) and (max-width: 1200px){
+  .fs-5{
+    font-size: 1rem !important;
+  }
+  .username{
+    margin-left: 2rem !important;
+  }
+}

@@ -1,38 +1,114 @@
 <div class="container mt-4">
   <nav class="navbar navbar-expand-lg bg-white pe-3" style="height: 5rem;">
-    <a class="navbar-brand txt-fatec txt-inter fs-3 mb-1 ms-4" href="#">Fatec</a>
+    <a class="navbar-brand txt-fatec txt-inter fs-3 mb-1 ms-4" href="">Fatec</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse bg-white header" id="navbarNav">
       <ul class="navbar-nav gap-2">
         <li class="nav-item">
-          <a class="nav-link active txt-inter fs-5 fs-sm-2" aria-current="page" href="#">Home</a>
+          <a class="nav-link active txt-inter fs-5 fs-sm-2" aria-current="page" href="">Home</a>
         </li>
-        <li class="nav-item">
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Disciplinas
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="#">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Professores
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="#">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Turmas
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="#">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cursos
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="#">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salas
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="#">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <li class="nav-item mobile-link">
           <a class="nav-link txt-inter fs-5" href="#">Disciplinas</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item mobile-link">
           <a class="nav-link txt-inter fs-5" href="#">Professores</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link txt-inter fs-5" href="#">Turma</a>
+
+        <li class="nav-item mobile-link">
+          <a class="nav-link txt-inter fs-5" href="#">Turmas</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item mobile-link">
           <a class="nav-link txt-inter fs-5" href="#">Cursos</a>
         </li>
-        <li class="nav-item">
+        
+        <li class="nav-item mobile-link">
           <a class="nav-link txt-inter fs-5" href="#">Salas</a>
         </li>
         <li class="nav-item">
-          <div class="txt-inter ms-2 mt-2 fs-5 username me-1">
+          <div class="txt-inter mt-2 fs-5 username me-1">
             Antônio Tadeu
           </div>
-
         </li>
         <li class="nav-item mt-1">
-          <button class="btn btn-fatec">Sair</button>
+          <a href="">
+            <button class="btn btn-fatec">Sair</button>
+          </a>
         </li>
       </ul>
     </div>
