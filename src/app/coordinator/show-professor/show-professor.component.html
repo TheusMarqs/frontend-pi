@@ -1,27 +1,32 @@
-<button class="btn btn-dark" (click)="create()">Novo Professor</button>
-<table class="table table-bordered border-dark mt-3">
-  <thead class="table-dark ">
-    <tr class="table-active">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Email</th>
-      <th scope="col">Senha</th>
-      <th scope="col">Condição</th>
-      <th scope="col">Opções</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let professor of professors">
-      <th scope="row">{{professor.id}}</th>
-      <td>{{professor.name}}</td>
-      <td>{{professor.email}}</td>
-      <td>{{professor.password}}</td>
-      <td>{{professor.condition}}</td>
-      <td>
-        <button class="btn btn-primary me-1" (click)="edit(professor)">Editar</button>
-        <button class="btn btn-primary" (click)="delete(professor)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<app-header-coord></app-header-coord>
+<div class="container">
+    <div class="display-6 text-center mt-5">
+        Professores cadastrados
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Condição</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let professor of professors">
+                <th scope="row">{{professor.id}}</th>
+                <td>{{professor.name}}</td>
+                <td>{{professor.email}}</td>
+                <td>{{professor.password}}</td>
+                <td>{{professor.condition}}</td>
+                <td>
+                    <button class="btn btn-primary me-1" (click)="edit(professor)">Editar</button>
+                    <button class="btn btn-primary" (click)="delete(professor)">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-dark float-end" (click)="create()">Novo Professor</button>
+</div>

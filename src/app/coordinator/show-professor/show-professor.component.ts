@@ -27,7 +27,7 @@ export class ShowProfessorComponent {
 
 
   create(){
-    this.router.navigate(['coordinator/register-professor']);
+    this.router.navigate(['coordenador/cadastro-professor']);
   }
 
   edit(professors: Professor) {
