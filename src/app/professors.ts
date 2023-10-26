@@ -3,5 +3,6 @@ export interface Professor{
     name: string;
     email: string;
     password: string;
+    education: string; 
     condition: boolean;
 }

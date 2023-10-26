@@ -31,9 +31,17 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="education" class="form-label">Formação:</label>
+                <input type="text" formControlName="education" class="form-control" id="education"
+                    placeholder="Formação">
+                <div *ngIf="submitted && education.invalid">
+                    <small class="text-danger">Formação inválida!</small>
+                </div>
+            </div>
+            <div class="mb-3">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Professor ativo</label>
                 <div class="form-check form-switch mt-2 ms-1">
-                    <input class="form-check-input" style="width: 50px; height: 25px;" formControlName="condition" type="checkbox" id="condition" checked>
+                    <input class="form-check-input" style="width: 50px; height: 25px;" formControlName="condition" type="text" id="condition" checked>
                 </div>
                 <div *ngIf="submitted && condition.invalid">
                     <small class="text-danger">Condição inválida!</small>

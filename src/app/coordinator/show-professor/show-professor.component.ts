@@ -31,7 +31,7 @@ export class ShowProfessorComponent {
   }
 
   edit(professors: Professor) {
-    this.router.navigate(['clientDetails', professors.id]);
+    this.router.navigate(['coordenador/atualizar-professor', professors.id]);
   }
 
   delete(professors: Professor) {

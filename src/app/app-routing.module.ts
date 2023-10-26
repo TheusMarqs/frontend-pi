@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'coordenador', component: CoordinatorComponent},
   {path: 'coordenador/cadastro-professor', component: RegisterProfessorComponent},
   {path: 'coordenador/show-professor', component: ShowProfessorComponent},
+  {path: 'coordenador/atualizar-professor/:id', component: RegisterProfessorComponent},
 ];
 
 @NgModule({
