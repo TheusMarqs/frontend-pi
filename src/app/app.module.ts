@@ -16,6 +16,7 @@ import { ShowProfessorComponent } from './coordinator/show-professor/show-profes
 import { IonicModule } from '@ionic/angular';
 import { RegisterClassroomComponent } from './coordinator/register-classroom/register-classroom.component';
 import { ShowClassroomComponent } from './coordinator/show-classroom/show-classroom.component';
+import { RegisterCourseComponent } from './coordinator/register-course/register-course.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ShowClassroomComponent } from './coordinator/show-classroom/show-classr
     RegisterProfessorComponent,
     ShowProfessorComponent,
     RegisterClassroomComponent,
-    ShowClassroomComponent
+    ShowClassroomComponent,
+    RegisterCourseComponent
   ],
   imports: [
     BrowserModule,

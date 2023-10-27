@@ -1,3 +1,4 @@
+import { RegisterCourseComponent } from './coordinator/register-course/register-course.component';
 import { LoginComponent } from './login/login.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,9 @@ const routes: Routes = [
   {path: 'coordenador/exibir-professor', component: ShowProfessorComponent},
   {path: 'coordenador/atualizar-professor/:id', component: RegisterProfessorComponent},
   {path: 'coordenador/cadastro-sala', component: RegisterClassroomComponent},
-  {path: 'coordenador/exibir-sala', component: ShowClassroomComponent}
+  {path: 'coordenador/exibir-sala', component: ShowClassroomComponent},
+  {path: 'coordenador/atualizar-sala/:id', component: RegisterClassroomComponent},
+  {path: 'coordenador/cadastro-curso', component: RegisterCourseComponent},
 ];
 
 @NgModule({
