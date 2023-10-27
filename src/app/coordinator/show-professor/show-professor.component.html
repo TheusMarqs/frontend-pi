@@ -18,17 +18,18 @@
         <tbody>
             <tr *ngFor="let professor of professors">
                 <th scope="row">{{professor.id}}</th>
-                <td>{{professor.name}}</td>
+                <td>{{professor.name | titlecase }}</td>
                 <td>{{professor.email}}</td>
                 <td>{{professor.password}}</td>
-                <td>{{professor.education}}</td>
-                <td>{{professor.condition}}</td>
+                <td>{{professor.education | titlecase }}</td>
+                <td *ngIf="professor.condition == true">Ativo</td>
+                <td *ngIf="professor.condition == false">Inativo</td>
                 <td>
-                    <button class="btn btn-primary me-1" (click)="edit(professor)">Editar</button>
-                    <button class="btn btn-primary" (click)="delete(professor)">Excluir</button>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(professor)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(professor)"></ion-icon>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-dark float-end" (click)="create()">Novo Professor</button>
+    <button class="btn btn-primary float-end mt-1" (click)="create()">Novo Professor</button>
 </div>

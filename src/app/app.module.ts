@@ -13,6 +13,9 @@ import { CoordinatorComponent } from './coordinator/coordinator.component';
 import { RegisterProfessorComponent } from './coordinator/register-professor/register-professor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShowProfessorComponent } from './coordinator/show-professor/show-professor.component';
+import { IonicModule } from '@ionic/angular';
+import { RegisterClassroomComponent } from './coordinator/register-classroom/register-classroom.component';
+import { ShowClassroomComponent } from './coordinator/show-classroom/show-classroom.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,17 @@ import { ShowProfessorComponent } from './coordinator/show-professor/show-profes
     HeaderCoordComponent,
     CoordinatorComponent,
     RegisterProfessorComponent,
-    ShowProfessorComponent
+    ShowProfessorComponent,
+    RegisterClassroomComponent,
+    ShowClassroomComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,30 @@
+<app-header-coord></app-header-coord>
+<div class="container">
+    <div class="display-6 text-center mt-5">
+        Salas cadastradas
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Número</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Capacidade</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let classroom of classrooms">
+                <th scope="row">{{classroom.id}}</th>
+                <td>{{classroom.number}}</td>
+                <td>{{classroom.type | titlecase}}</td>
+                <td>{{classroom.capacity}}</td>
+                <td>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(classroom)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(classroom)"></ion-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-fatec float-end mt-1" (click)="create()">Nova Sala de aula</button>
+</div>

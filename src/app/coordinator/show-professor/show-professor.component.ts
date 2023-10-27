@@ -6,7 +6,7 @@ import { Professor } from 'src/app/professors';
 @Component({
   selector: 'app-show-professor',
   templateUrl: './show-professor.component.html',
-  styleUrls: ['./show-professor.component.css']
+  styleUrls: ['./show-professor.component.css', '../../app.component.css']
 })
 export class ShowProfessorComponent {
   professors: Professor[] = [];

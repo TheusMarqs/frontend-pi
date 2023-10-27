@@ -12,3 +12,12 @@
 .txt-inter{
     font-family: 'Inter', sans-serif;
 }
+
+.optionIcons{
+    cursor: pointer;
+    font-size: 22px !important;
+}
+
+.optionIcons:hover{
+    opacity: 80%;
+}

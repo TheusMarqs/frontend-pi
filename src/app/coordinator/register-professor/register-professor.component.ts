@@ -24,7 +24,7 @@ export class RegisterProfessorComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/\S/)]],
       education: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: ['', [Validators.required]]
+      condition: [false]
     });
   }
 
@@ -49,7 +49,7 @@ export class RegisterProfessorComponent implements OnInit {
       if (this.formGroupProfessor.valid) {
         this.professorService.update(this.formGroupProfessor.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/show-professor']);
+            this.router.navigate(['coordenador/exibir-professor']);
           }
         })
       }
@@ -58,7 +58,7 @@ export class RegisterProfessorComponent implements OnInit {
     else {
       this.professorService.save(this.formGroupProfessor.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/show-professor']);
+          this.router.navigate(['coordenador/exibir-professor']);
         }
       })
     }
@@ -66,7 +66,7 @@ export class RegisterProfessorComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/show-professor']);
+    this.router.navigate(['coordenador/exibir-professor']);
   }
 
   get name(): any {
@@ -80,9 +80,6 @@ export class RegisterProfessorComponent implements OnInit {
   }
   get education(): any {
     return this.formGroupProfessor.get("education");
-  }
-  get condition(): any {
-    return this.formGroupProfessor.get("condition");
   }
 
 }
