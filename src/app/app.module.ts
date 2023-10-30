@@ -19,6 +19,8 @@ import { ShowClassroomComponent } from './coordinator/show-classroom/show-classr
 import { RegisterCourseComponent } from './coordinator/register-course/register-course.component';
 import { ShowCourseComponent } from './coordinator/show-course/show-course.component';
 import { RegisterTeamComponent } from './coordinator/register-team/register-team.component';
+import { ShowTeamComponent } from './coordinator/show-team/show-team.component';
+import { RegisterDisciplineComponent } from './coordinator/register-discipline/register-discipline.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RegisterTeamComponent } from './coordinator/register-team/register-team
     ShowClassroomComponent,
     RegisterCourseComponent,
     ShowCourseComponent,
-    RegisterTeamComponent
+    RegisterTeamComponent,
+    ShowTeamComponent,
+    RegisterDisciplineComponent
   ],
   imports: [
     BrowserModule,

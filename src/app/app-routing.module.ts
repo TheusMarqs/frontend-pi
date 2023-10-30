@@ -1,3 +1,5 @@
+import { RegisterDisciplineComponent } from './coordinator/register-discipline/register-discipline.component';
+import { ShowTeamComponent } from './coordinator/show-team/show-team.component';
 import { RegisterCourseComponent } from './coordinator/register-course/register-course.component';
 import { LoginComponent } from './login/login.component';
 import { ProfessorComponent } from './professor/professor.component';
@@ -26,7 +28,10 @@ const routes: Routes = [
   {path: 'coordenador/cadastro-curso', component: RegisterCourseComponent},
   {path: 'coordenador/exibir-curso', component: ShowCourseComponent},
   {path: 'coordenador/atualizar-curso/:id', component: RegisterCourseComponent},
-  {path: 'coordenador/cadastro-turma', component: RegisterTeamComponent}
+  {path: 'coordenador/cadastro-turma', component: RegisterTeamComponent},
+  {path: 'coordenador/exibir-turma', component: ShowTeamComponent},
+  {path: 'coordenador/atualizar-turma/:id', component: RegisterTeamComponent},
+  {path: 'coordenador/cadastro-disciplina', component: RegisterDisciplineComponent},
 ];
 
 @NgModule({
