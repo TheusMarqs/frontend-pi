@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label for="workload" class="form-label">Carga horária do curso:</label>
-                <input type="number" formControlName="workload" class="form-control" id="workload" placeholder="Carga horária">
+                <input type="number" formControlName="workload" class="form-control" id="workload" placeholder="Carga horária em horas totais">
                 <div *ngIf="submitted && workload.invalid">
                     <small class="text-danger">Carga horária inválida!</small>
                 </div>
@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="duration" class="form-label">Quantidade de semestres:</label>
                 <input type="number" formControlName="duration" class="form-control" id="duration"
-                    placeholder="Duração">
+                    placeholder="Quantia">
                 <div *ngIf="submitted && duration.invalid">
                     <small class="text-danger">Duração inválida!</small>
                 </div>

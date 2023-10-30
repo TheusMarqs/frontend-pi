@@ -6,7 +6,7 @@ import { ClassroomService } from 'src/app/classroom.service';
 @Component({
   selector: 'app-register-classroom',
   templateUrl: './register-classroom.component.html',
-  styleUrls: ['./register-classroom.component.css']
+  styleUrls: ['./register-classroom.component.css', '../../app.component.css']
 })
 export class RegisterClassroomComponent implements OnInit {
   formGroupClassroom: FormGroup;
@@ -20,7 +20,7 @@ export class RegisterClassroomComponent implements OnInit {
     this.formGroupClassroom = formBuilder.group({
       id: [],
       number: [, [Validators.required]],
-      type: ['', [Validators.required, Validators.pattern(/\S/)]],
+      type: ['', [Validators.required]],
       capacity: [, [Validators.required]]
     });
   }

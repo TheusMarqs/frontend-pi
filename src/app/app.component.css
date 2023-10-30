@@ -5,7 +5,7 @@
 }
 
 .txt-fatec{
-    color: #B02A37;
+    color: #B02A37 !important;
     font-family: 'Inter', sans-serif;
 }
 
@@ -20,4 +20,14 @@
 
 .optionIcons:hover{
     opacity: 80%;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
 }

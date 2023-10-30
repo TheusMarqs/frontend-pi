@@ -1,0 +1,30 @@
+<app-header-coord></app-header-coord>
+<div class="container">
+    <div class="display-6 text-center mt-5">
+        Cursos cadastradas
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Carga horária total</th>
+                <th scope="col">Duração em semestres</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses">
+                <th scope="row">{{course.id}}</th>
+                <td>{{course.name | titlecase}}</td>
+                <td>{{course.workload}}</td>
+                <td>{{course.duration}}</td>
+                <td>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(course)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(course)"></ion-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-fatec float-end mt-1" (click)="create()">Nova Sala de aula</button>
+</div>

@@ -17,6 +17,8 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterClassroomComponent } from './coordinator/register-classroom/register-classroom.component';
 import { ShowClassroomComponent } from './coordinator/show-classroom/show-classroom.component';
 import { RegisterCourseComponent } from './coordinator/register-course/register-course.component';
+import { ShowCourseComponent } from './coordinator/show-course/show-course.component';
+import { RegisterTeamComponent } from './coordinator/register-team/register-team.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { RegisterCourseComponent } from './coordinator/register-course/register-
     ShowProfessorComponent,
     RegisterClassroomComponent,
     ShowClassroomComponent,
-    RegisterCourseComponent
+    RegisterCourseComponent,
+    ShowCourseComponent,
+    RegisterTeamComponent
   ],
   imports: [
     BrowserModule,
