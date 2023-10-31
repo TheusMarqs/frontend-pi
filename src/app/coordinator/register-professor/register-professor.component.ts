@@ -30,7 +30,9 @@ export class RegisterProfessorComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getProfessorById(id);
+    if(id) {
+      this.getProfessorById(id);
+    }
   }
 
   getProfessorById(id: number) {

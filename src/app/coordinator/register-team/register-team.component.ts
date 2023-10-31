@@ -35,7 +35,10 @@ export class RegisterTeamComponent {
       this.courses = courses;
     });
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getTeamById(id);
+    if(id){
+      this.getTeamById(id);
+    }
+
   }
 
   getTeamById(id: number) {

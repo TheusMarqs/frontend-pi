@@ -34,7 +34,9 @@ export class RegisterDisciplineComponent {
       this.courses = courses;
     });
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getDisciplineById(id);
+    if (id) {
+      this.getDisciplineById(id);
+    }
   }
 
   getDisciplineById(id: number) {

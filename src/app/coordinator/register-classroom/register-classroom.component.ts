@@ -27,7 +27,9 @@ export class RegisterClassroomComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getClassroomById(id);
+    if(id){
+      this.getClassroomById(id);
+    }
   }
 
   getClassroomById(id: number) {
