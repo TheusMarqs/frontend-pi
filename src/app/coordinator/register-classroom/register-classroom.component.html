@@ -1,53 +1,57 @@
 <app-header-coord></app-header-coord>
 
-<div class="row mt-5">
-    <div class="col-6 m-auto">
-        <form [formGroup]="formGroupClassroom">
-            <div class="mb-3">
-                <div class="display-6 text-center">
-                    Cadastro de Salas
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-8 m-auto">
+            <form [formGroup]="formGroupClassroom">
+                <div class="mb-3">
+                    <div class="display-6 text-center">
+                        Cadastro de Salas
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="number" class="form-label">Número da sala:</label>
-                <input type="number" formControlName="number" class="form-control" id="number" placeholder="Número">
-                <div *ngIf="submitted && number.invalid">
-                    <small class="text-danger">Número inválido!</small>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Número da sala:</label>
+                    <input type="number" formControlName="number" class="form-control" id="number" placeholder="Número">
+                    <div *ngIf="submitted && number.invalid">
+                        <small class="text-danger">Número inválido!</small>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="type" class="form-label">Tipo:</label>
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="type" type="radio" name="type" id="type" value="lab">
-                    <label class="form-check-label" for="lab">
-                        Lab
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" formControlName="type" type="radio" name="type" id="type2" value="sala">
-                    <label class="form-check-label" for="sala">
-                        Sala
-                    </label>
-                </div>
-                <div *ngIf="submitted && type.invalid">
-                    <small class="text-danger">Tipo inválido!</small>
-                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Tipo:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="type" type="radio" name="type" id="type"
+                            value="lab">
+                        <label class="form-check-label" for="lab">
+                            Lab
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" formControlName="type" type="radio" name="type" id="type2"
+                            value="sala">
+                        <label class="form-check-label" for="sala">
+                            Sala
+                        </label>
+                    </div>
+                    <div *ngIf="submitted && type.invalid">
+                        <small class="text-danger">Tipo inválido!</small>
+                    </div>
 
 
-            </div>
-            <div class="mb-3">
-                <label for="capacity" class="form-label">Capacidade de alunos:</label>
-                <input type="number" formControlName="capacity" class="form-control" id="capacity"
-                    placeholder="Capacidade">
-                <div *ngIf="submitted && capacity.invalid">
-                    <small class="text-danger">Capacidade inválida!</small>
                 </div>
-            </div>
-            <div class="mb-3 d-flex justify-content-end gap-2">
-                <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
-                <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
-                <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
-            </div>
-        </form>
+                <div class="mb-3">
+                    <label for="capacity" class="form-label">Capacidade de alunos:</label>
+                    <input type="number" formControlName="capacity" class="form-control" id="capacity"
+                        placeholder="Capacidade">
+                    <div *ngIf="submitted && capacity.invalid">
+                        <small class="text-danger">Capacidade inválida!</small>
+                    </div>
+                </div>
+                <div class="mb-3 d-flex justify-content-end gap-2">
+                    <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
+                    <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
+                    <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

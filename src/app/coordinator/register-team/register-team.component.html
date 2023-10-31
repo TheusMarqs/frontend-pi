@@ -1,48 +1,50 @@
 <app-header-coord></app-header-coord>
 
-<div class="row mt-5">
-  <div class="col-6 m-auto">
-    <form [formGroup]="formGroupTeam">
-      <div class="mb-3">
-        <div class="display-6 text-center">
-          Cadastro de Turmas
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-8 m-auto">
+      <form [formGroup]="formGroupTeam">
+        <div class="mb-3">
+          <div class="display-6 text-center">
+            Cadastro de Turmas
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="course" class="form-label">Curso:</label>
-        <select class="form-select" formControlName="course" placeholder="teste">
-          <option *ngFor="let course of courses" value="{{course.id}}">{{course.name | titlecase}}</option>
-        </select>
-        <div *ngIf="submitted && course.invalid">
-          <small class="text-danger">Curso inválido!</small>
+        <div class="mb-3">
+          <label for="course" class="form-label">Curso:</label>
+          <select class="form-select" formControlName="course" placeholder="teste">
+            <option *ngFor="let course of courses" value="{{course.id}}">{{course.name | titlecase}}</option>
+          </select>
+          <div *ngIf="submitted && course.invalid">
+            <small class="text-danger">Curso inválido!</small>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="students" class="form-label">Quantia de alunos:</label>
-        <input type="number" formControlName="students" class="form-control" id="students" placeholder="Quantidade">
-        <div *ngIf="submitted && students.invalid">
-          <small class="text-danger">Quantia inválida!</small>
+        <div class="mb-3">
+          <label for="students" class="form-label">Quantia de alunos:</label>
+          <input type="number" formControlName="students" class="form-control" id="students" placeholder="Quantidade">
+          <div *ngIf="submitted && students.invalid">
+            <small class="text-danger">Quantia inválida!</small>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Semestre:</label>
-        <input type="number" formControlName="semester" class="form-control" id="semester" placeholder="Semestre">
-        <div *ngIf="submitted && semester.invalid">
-          <small class="text-danger">Semestre inválido!</small>
+        <div class="mb-3">
+          <label for="password" class="form-label">Semestre:</label>
+          <input type="number" formControlName="semester" class="form-control" id="semester" placeholder="Semestre">
+          <div *ngIf="submitted && semester.invalid">
+            <small class="text-danger">Semestre inválido!</small>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="period" class="form-label">Período:</label>
-        <input type="text" formControlName="period" class="form-control" id="period" placeholder="Período">
-        <div *ngIf="submitted && period.invalid">
-          <small class="text-danger">Período inválido!</small>
+        <div class="mb-3">
+          <label for="period" class="form-label">Período:</label>
+          <input type="text" formControlName="period" class="form-control" id="period" placeholder="Período">
+          <div *ngIf="submitted && period.invalid">
+            <small class="text-danger">Período inválido!</small>
+          </div>
         </div>
-      </div>
-      <div class="mb-3 d-flex justify-content-end gap-2">
-        <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
-        <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
-        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
-      </div>
-    </form>
+        <div class="mb-3 d-flex justify-content-end gap-2">
+          <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
+          <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
+          <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

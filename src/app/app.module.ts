@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderCoordComponent } from './header-coord/header-coord.component';
 import { CoordinatorComponent } from './coordinator/coordinator.component';
 import { RegisterProfessorComponent } from './coordinator/register-professor/register-professor.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowProfessorComponent } from './coordinator/show-professor/show-professor.component';
 import { IonicModule } from '@ionic/angular';
 import { RegisterClassroomComponent } from './coordinator/register-classroom/register-classroom.component';
@@ -21,6 +21,8 @@ import { ShowCourseComponent } from './coordinator/show-course/show-course.compo
 import { RegisterTeamComponent } from './coordinator/register-team/register-team.component';
 import { ShowTeamComponent } from './coordinator/show-team/show-team.component';
 import { RegisterDisciplineComponent } from './coordinator/register-discipline/register-discipline.component';
+import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
+import { ShowClassComponent } from './coordinator/show-class/show-class.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { RegisterDisciplineComponent } from './coordinator/register-discipline/r
     ShowCourseComponent,
     RegisterTeamComponent,
     ShowTeamComponent,
-    RegisterDisciplineComponent
+    RegisterDisciplineComponent,
+    ShowDisciplineComponent,
+    ShowClassComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import { RegisterDisciplineComponent } from './coordinator/register-discipline/r
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,6 +19,11 @@ export class CourseService {
     return this.http.get<Course>(`${this.url}/${id}`);
   }
 
+  getCourseName(id: number): Observable<string> {
+    const url = `${this.url}/courses/${id}/name`;
+    return this.http.get<string>(url);
+  }
+
   save(course: Course): Observable<Course> {
     return this.http.post<Course>(this.url, course);
   }

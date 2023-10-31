@@ -13,25 +13,42 @@ import { RegisterClassroomComponent } from './coordinator/register-classroom/reg
 import { ShowClassroomComponent } from './coordinator/show-classroom/show-classroom.component';
 import { ShowCourseComponent } from './coordinator/show-course/show-course.component';
 import { RegisterTeamComponent } from './coordinator/register-team/register-team.component';
+import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
+import { ShowClassComponent } from './coordinator/show-class/show-class.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'professor', component: ProfessorComponent},
   {path: 'aluno', component: StudentComponent},
+
+  //Agendamento de aulas
   {path: 'coordenador', component: CoordinatorComponent},
+  {path: 'coordenador/exibir-aula/:id', component: ShowClassComponent},
+
+  //Professores
   {path: 'coordenador/cadastro-professor', component: RegisterProfessorComponent},
   {path: 'coordenador/exibir-professor', component: ShowProfessorComponent},
   {path: 'coordenador/atualizar-professor/:id', component: RegisterProfessorComponent},
+
+  //Salas
   {path: 'coordenador/cadastro-sala', component: RegisterClassroomComponent},
   {path: 'coordenador/exibir-sala', component: ShowClassroomComponent},
   {path: 'coordenador/atualizar-sala/:id', component: RegisterClassroomComponent},
+
+  //Cursos
   {path: 'coordenador/cadastro-curso', component: RegisterCourseComponent},
   {path: 'coordenador/exibir-curso', component: ShowCourseComponent},
   {path: 'coordenador/atualizar-curso/:id', component: RegisterCourseComponent},
+
+  //Turmas
   {path: 'coordenador/cadastro-turma', component: RegisterTeamComponent},
   {path: 'coordenador/exibir-turma', component: ShowTeamComponent},
   {path: 'coordenador/atualizar-turma/:id', component: RegisterTeamComponent},
+
+  //Disciplinas
   {path: 'coordenador/cadastro-disciplina', component: RegisterDisciplineComponent},
+  {path: 'coordenador/exibir-disciplina', component: ShowDisciplineComponent},
+  {path: 'coordenador/atualizar-disciplina/:id', component: RegisterDisciplineComponent},
 ];
 
 @NgModule({

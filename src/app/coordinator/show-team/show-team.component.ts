@@ -2,6 +2,8 @@ import { TeamService } from 'src/app/team.service';
 import { Component } from '@angular/core';
 import { Team } from 'src/app/teams';
 import { Router } from '@angular/router';
+import { Course } from 'src/app/courses';
+import { CourseService } from 'src/app/course.service';
 
 @Component({
   selector: 'app-show-team',
@@ -10,13 +12,26 @@ import { Router } from '@angular/router';
 })
 export class ShowTeamComponent {
   teams: Team[] = [];
+  courses: Course[] = [];
 
-  constructor(private teamService: TeamService, private router: Router) {
+  constructor(private teamService: TeamService, private router: Router, private courseService: CourseService) {
   }
 
 
   ngOnInit(): void {
+    this.courseService.getCourses().subscribe((courses) => {
+      this.courses = courses;
+    });
     this.loadTeams();
+  }
+  
+  getCourseName(teamId: number): string {
+    const team = this.teams.find((team) => team.id === teamId);
+    if (team) {
+      const course = this.courses.find((course) => course.id === team.course);
+      return course ? course.name : 'Curso não encontrado';
+    }
+    return 'Disciplina não encontrada';
   }
 
   loadTeams() {

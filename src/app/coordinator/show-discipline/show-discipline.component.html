@@ -1,0 +1,30 @@
+<app-header-coord></app-header-coord>
+<div class="container">
+    <div class="display-6 text-center mt-5">
+        Disciplinas cadastradas
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Carga horária total</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let discipline of disciplines">
+                <th scope="row">{{discipline.id}}</th>
+                <td>{{getCourseName(discipline.id) | titlecase}}</td>
+                <td>{{discipline.name | titlecase}}</td>
+                <td>{{discipline.workload}} horas</td>
+                <td>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(discipline)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(discipline)"></ion-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-fatec float-end mt-1" (click)="create()">Nova disciplina</button>
+</div>

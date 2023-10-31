@@ -24,9 +24,8 @@ export class RegisterDisciplineComponent {
     this.formGroupDiscipline = formBuilder.group({
       id: [],
       course: [, [Validators.required]],
-      students: [, [Validators.required]],
-      semester: [, [Validators.required]],
-      period: ['', [Validators.required, Validators.pattern(/\S/)]],
+      name: [, [Validators.required, Validators.pattern(/\S/)]],
+      workload: [, [Validators.required]],
     });
   }
 

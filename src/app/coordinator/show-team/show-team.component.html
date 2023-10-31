@@ -17,9 +17,9 @@
         <tbody>
             <tr *ngFor="let team of teams">
                 <th scope="row">{{team.id}}</th>
-                <td>{{team.course}}</td>
+                <td>{{getCourseName(team.id) | titlecase}}</td>
                 <td>{{team.students}}</td>
-                <td>{{team.semester}}</td>
+                <td>{{team.semester}}º semestre</td>
                 <td>{{team.period | titlecase }}</td>
                 <td>
                     <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(team)"></ion-icon>
