@@ -13,6 +13,7 @@ import { Discipline } from 'src/app/disciplines';
 export class ShowDisciplineComponent {
   disciplines: Discipline[] = [];
   courses: Course[] = [];
+  filter: string = '';
 
   constructor(private disciplineService: DisciplineService, private router: Router, private courseService: CourseService) {
   }

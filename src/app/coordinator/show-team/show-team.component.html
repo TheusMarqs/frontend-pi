@@ -3,22 +3,28 @@
     <div class="display-6 text-center mt-5">
         Turmas cadastradas
     </div>
-    <table class="table mt-5">
+    <div class="row pt-3">
+        <div class="col-md-3 mt-5 d-flex">
+            <input class="form-control search" type="text" name="search" placeholder="Pesquisar... "
+                [(ngModel)]="filter">
+        </div>
+    </div>
+    <table *ngIf="teams.length !== 0; else empty"f class="table mt-5">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Curso</th>
-                <th scope="col">Alunos</th>
+                <th scope="col">Tamanho</th>
                 <th scope="col">Semestre</th>
                 <th scope="col">Período</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let team of teams">
+            <tr *ngFor="let team of teams | filter : filter">
                 <th scope="row">{{team.id}}</th>
                 <td>{{getCourseName(team.id) | titlecase}}</td>
-                <td>{{team.students}}</td>
+                <td>{{team.students}} alunos</td>
                 <td>{{team.semester}}º semestre</td>
                 <td>{{team.period | titlecase }}</td>
                 <td>
@@ -28,5 +34,8 @@
             </tr>
         </tbody>
     </table>
+    <ng-template #empty>
+        <p class="txt-inter fs-3 text-center mt-5">Nenhuma turma cadastrada.</p>
+    </ng-template>
     <button class="btn btn-fatec float-end mt-1" (click)="create()">Nova turma</button>
 </div>

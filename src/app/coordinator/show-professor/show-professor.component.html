@@ -3,7 +3,13 @@
     <div class="display-6 text-center mt-5">
         Professores cadastrados
     </div>
-    <table class="table mt-5">
+    <div class="row pt-3">
+        <div class="col-md-3 mt-5 d-flex">
+            <input class="form-control search" type="text" name="search" placeholder="Pesquisar... "
+                [(ngModel)]="filter">
+        </div>
+    </div>
+    <table *ngIf="professors.length !== 0; else empty"f class="table mt-5">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -16,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let professor of professors">
+            <tr *ngFor="let professor of professors | filter : filter">
                 <th scope="row">{{professor.id}}</th>
                 <td>{{professor.name | titlecase }}</td>
                 <td>{{professor.email}}</td>
@@ -31,5 +37,8 @@
             </tr>
         </tbody>
     </table>
+    <ng-template #empty>
+        <p class="txt-inter fs-3 text-center mt-5">Nenhum professor cadastrado.</p>
+    </ng-template>
     <button class="btn btn-fatec float-end mt-1" (click)="create()">Novo Professor</button>
 </div>

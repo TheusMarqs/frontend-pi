@@ -23,6 +23,7 @@ import { ShowTeamComponent } from './coordinator/show-team/show-team.component';
 import { RegisterDisciplineComponent } from './coordinator/register-discipline/register-discipline.component';
 import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
 import { ShowClassComponent } from './coordinator/show-class/show-class.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ShowClassComponent } from './coordinator/show-class/show-class.componen
     ShowTeamComponent,
     RegisterDisciplineComponent,
     ShowDisciplineComponent,
-    ShowClassComponent
+    ShowClassComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { ShowClassComponent } from './coordinator/show-class/show-class.componen
     HttpClientModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

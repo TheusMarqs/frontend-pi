@@ -1,6 +1,6 @@
 import { CourseService } from 'src/app/course.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/courses';
 import { TeamService } from 'src/app/team.service';
@@ -10,6 +10,7 @@ import { TeamService } from 'src/app/team.service';
   templateUrl: './register-team.component.html',
   styleUrls: ['./register-team.component.css', '../../app.component.css']
 })
+
 export class RegisterTeamComponent {
   formGroupTeam: FormGroup;
   submitted: boolean = false;
@@ -29,6 +30,8 @@ export class RegisterTeamComponent {
       period: ['', [Validators.required, Validators.pattern(/\S/)]],
     });
   }
+
+  
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe((courses) => {

@@ -13,6 +13,7 @@ import { CourseService } from 'src/app/course.service';
 export class ShowTeamComponent {
   teams: Team[] = [];
   courses: Course[] = [];
+  filter: string = '';
 
   constructor(private teamService: TeamService, private router: Router, private courseService: CourseService) {
   }

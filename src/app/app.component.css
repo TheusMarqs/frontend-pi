@@ -31,3 +31,17 @@ input[type=number] {
    appearance: textfield;
 
 }
+
+.search {
+    color: black;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid rgb(200, 200, 200);
+    background-color: #F8F9FA;
+}
+
+.search:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0 !important;
+    border-bottom: 2px solid cornflowerblue !important;
+}

@@ -3,22 +3,30 @@
     <div class="display-6 text-center mt-5">
         Cursos cadastradas
     </div>
-    <table class="table mt-5">
+    <div class="row pt-3">
+        <div class="col-md-3 mt-5 d-flex">
+            <input class="form-control search" type="text" name="search" placeholder="Pesquisar... "
+                [(ngModel)]="filter">
+        </div>
+    </div>
+
+
+    <table *ngIf="courses.length !== 0; else empty" f class="table mt-5">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Carga horária total</th>
-                <th scope="col">Duração em semestres</th>
+                <th scope="col">Duração</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let course of courses">
+            <tr *ngFor="let course of courses | filter : filter">
                 <th scope="row">{{course.id}}</th>
                 <td>{{course.name | titlecase}}</td>
-                <td>{{course.workload}}</td>
-                <td>{{course.duration}}</td>
+                <td>{{course.workload}} horas</td>
+                <td>{{course.duration}} semestres</td>
                 <td>
                     <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(course)"></ion-icon>
                     <ion-icon class="optionIcons" name="trash-outline" (click)="delete(course)"></ion-icon>
@@ -26,5 +34,8 @@
             </tr>
         </tbody>
     </table>
+    <ng-template #empty>
+        <p class="txt-inter fs-3 text-center mt-5">Nenhum curso cadastrado.</p>
+    </ng-template>
     <button class="btn btn-fatec float-end mt-1" (click)="create()">Novo curso</button>
 </div>

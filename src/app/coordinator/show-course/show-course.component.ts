@@ -10,14 +10,16 @@ import { Router } from '@angular/router';
 })
 export class ShowCourseComponent {
   courses: Course[] = [];
-
+  filter: string = '';
+  
   constructor(private courseService: CourseService, private router: Router) {
   }
-
 
   ngOnInit(): void {
     this.loadCourses();
   }
+  
+  
 
   loadCourses() {
     this.courseService.getCourses().subscribe({
@@ -26,7 +28,7 @@ export class ShowCourseComponent {
   }
 
 
-  create(){
+  create() {
     this.router.navigate(['coordenador/cadastro-curso']);
   }
 

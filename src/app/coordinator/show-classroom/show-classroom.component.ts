@@ -10,6 +10,7 @@ import { Classroom } from 'src/app/classrooms';
 })
 export class ShowClassroomComponent {
   classrooms: Classroom[] = [];
+  filter: string = '';
 
   constructor(private classroomService: ClassroomService, private router: Router) {
   }

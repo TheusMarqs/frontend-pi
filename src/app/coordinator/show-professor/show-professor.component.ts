@@ -10,7 +10,8 @@ import { Professor } from 'src/app/professors';
 })
 export class ShowProfessorComponent {
   professors: Professor[] = [];
-
+  filter: string = '';
+  
   constructor(private professorService: ProfessorService, private router: Router) {
   }
 
