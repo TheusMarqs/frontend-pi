@@ -1,0 +1,46 @@
+<app-header-coord></app-header-coord>
+
+<div class="container">
+    <div *ngIf="teamById" class="display-6 text-center mt-5">
+        {{courseById | titlecase}} - {{teamById.period | titlecase}} - {{teamById.semester}}º semestre
+    </div>
+    <button></button>
+
+    <div class="row pt-3">
+        <div class="col-md-3 mt-5 d-flex">
+            <input class="form-control search" type="text" name="search" placeholder="Pesquisar... "
+                [(ngModel)]="filter">
+        </div>
+    </div>
+
+
+    <table *ngIf="courses.length !== 0; else empty" f class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Horário</th>
+                <th scope="col">Sala</th>
+                <th scope="col">Professor</th>
+                <th scope="col">Disciplina</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let schedule of schedules | filter : filter">
+                <th scope="row">{{schedule.id}}</th>
+                <td>{{schedule.start_time}} - {{schedule.end_time}}</td>
+                <td>Sala {{schedule.classroom}}</td>
+                <td>{{schedule.professor}}</td>
+                <td>{{schedule.discipline}}</td>
+                <td>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(schedule)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #empty>
+        <p class="txt-inter fs-3 text-center mt-5">Nenhum agendamento cadastrado para essa turma.</p>
+    </ng-template>
+    <button class="btn btn-fatec float-end mt-1" (click)="create()">Novo agendamento</button>
+</div>

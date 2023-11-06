@@ -14,7 +14,8 @@ import { ShowClassroomComponent } from './coordinator/show-classroom/show-classr
 import { ShowCourseComponent } from './coordinator/show-course/show-course.component';
 import { RegisterTeamComponent } from './coordinator/register-team/register-team.component';
 import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
-import { ShowClassComponent } from './coordinator/show-class/show-class.component';
+import { ShowScheduleComponent } from './coordinator/show-schedule/show-schedule.component';
+import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
 
   //Agendamento de aulas
   {path: 'coordenador', component: CoordinatorComponent},
-  {path: 'coordenador/exibir-aula/:id', component: ShowClassComponent},
+  {path: 'coordenador/exibir-agendamento/:id', component: ShowScheduleComponent},
+  {path: 'coordenador/cadastro-agendamento', component: RegisterScheduleComponent},
 
   //Professores
   {path: 'coordenador/cadastro-professor', component: RegisterProfessorComponent},

@@ -29,7 +29,7 @@ export class CoordinatorComponent implements OnInit{
 
   navigateToSelectedTeam(): void {
     if (this.selectedTeamId !== null && this.selectedTeamId.toString() !== '0') {
-      this.router.navigate(['/coordenador/exibir-aula', this.selectedTeamId]);
+      this.router.navigate(['/coordenador/exibir-agendamento', this.selectedTeamId]);
     }
   }
 

@@ -1,28 +1,36 @@
-import { CourseService } from './../../course.service';
+import { CourseService } from '../../course.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/courses';
+import { ScheduleService } from 'src/app/schedule.service';
+import { Schedule } from 'src/app/schedules';
 import { TeamService } from 'src/app/team.service';
 import { Team } from 'src/app/teams';
 
 @Component({
-  selector: 'app-show-class',
-  templateUrl: './show-class.component.html',
-  styleUrls: ['./show-class.component.css']
+  selector: 'app-show-schedule',
+  templateUrl: './show-schedule.component.html',
+  styleUrls: ['./show-schedule.component.css', '../../app.component.css']
 })
-export class ShowClassComponent implements OnInit{
+export class ShowScheduleComponent implements OnInit{
   teams: Team[] = [];
+  schedules: Schedule[] = [];
   courses: Course[] = [];
   teamById: Team | null = null;
   courseById: string = '';
+  filter: string = '';
 
-
-  constructor(private teamService: TeamService, private route: ActivatedRoute, private courseService: CourseService){
+  constructor(private teamService: TeamService,
+    private route: ActivatedRoute,
+    private courseService: CourseService,
+    private scheduleService: ScheduleService,
+    private router: Router){
   }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
     this.getTeamById(id);
+    this.loadSchedules()
   }
 
 
@@ -56,6 +64,27 @@ export class ShowClassComponent implements OnInit{
       error: (error) => {
         console.error('Erro ao buscar nome do curso', error);
       }
+    });
+  }
+  
+  loadSchedules() {
+    this.scheduleService.getSchedules().subscribe({
+      next: data => this.schedules = data
+    });
+  }
+
+
+  create() {
+    this.router.navigate(['coordenador/cadastro-agendamento']);
+  }
+
+  edit(schedules: Schedule) {
+    this.router.navigate(['coordenador/atualizar-agendamento', schedules.id]);
+  }
+
+  delete(schedules: Schedule) {
+    this.scheduleService.delete(schedules).subscribe({
+      next: () => this.loadSchedules()
     });
   }
 

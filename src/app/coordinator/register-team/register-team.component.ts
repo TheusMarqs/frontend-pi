@@ -17,7 +17,8 @@ export class RegisterTeamComponent {
   isEditing: boolean = false;
   courses: Course[] = [];
 
-  constructor(private formBuilder: FormBuilder, private teamService: TeamService,
+  constructor(private formBuilder: FormBuilder,
+    private teamService: TeamService,
     private route: ActivatedRoute,
     private router: Router,
     private courseService: CourseService) {

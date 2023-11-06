@@ -22,8 +22,9 @@ import { RegisterTeamComponent } from './coordinator/register-team/register-team
 import { ShowTeamComponent } from './coordinator/show-team/show-team.component';
 import { RegisterDisciplineComponent } from './coordinator/register-discipline/register-discipline.component';
 import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
-import { ShowClassComponent } from './coordinator/show-class/show-class.component';
+import { ShowScheduleComponent } from './coordinator/show-schedule/show-schedule.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ShowTeamComponent,
     RegisterDisciplineComponent,
     ShowDisciplineComponent,
-    ShowClassComponent,
+    ShowScheduleComponent,
+    RegisterScheduleComponent,
     
   ],
   imports: [
