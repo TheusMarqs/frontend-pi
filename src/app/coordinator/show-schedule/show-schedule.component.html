@@ -4,7 +4,7 @@
     <div *ngIf="teamById" class="display-6 text-center mt-5">
         {{courseById | titlecase}} - {{teamById.period | titlecase}} - {{teamById.semester}}º semestre
     </div>
-    <button></button>
+    <button class="btn btn-fatec" [routerLink]="['/coordenador']">Voltar</button>
 
     <div class="row pt-3">
         <div class="col-md-3 mt-5 d-flex">
