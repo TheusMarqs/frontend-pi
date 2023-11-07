@@ -3,13 +3,13 @@
 <div class="container">
     <div class="display-6 text-center mt-5">
         Segunda feira
-        <button [routerLink]="['/coordenador/exibir-agendamento']" class="btn btn-fatec ms-5">Voltar</button>
+        <button [routerLink]="['/coordenador']" class="btn btn-fatec ms-5">Voltar</button>
     </div>
     <form [formGroup]="formGroupSchedule">
         <div class="row">
             <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="13:20 - 14:10">
-                <select class="form-select mt-4">
+                <input type="text" disabled class="form-control mt-5" value="13:20 - 14:10">
+                <select formControlName="classroom" class="form-select mt-4">
                     <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
                         {{ classroom.type | titlecase }} - {{classroom.number}}
                     </option>
@@ -19,7 +19,7 @@
                     <small class="text-danger">Sala inválida!</small>
                 </div>
 
-                <select class="form-select mt-4">
+                <select formControlName="discipline" class="form-select mt-4">
                     <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
                         {{ discipline.name | titlecase }}
                     </option>
@@ -29,7 +29,7 @@
                     <small class="text-danger">Disciplina inválida!</small>
                 </div>
 
-                <select class="form-select mt-4">
+                <select formControlName="professor" class="form-select mt-4">
                     <option *ngFor="let professor of professors" value="{{professor.id}}">
                         {{ professor.name | titlecase }}
                     </option>
