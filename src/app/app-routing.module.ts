@@ -16,6 +16,8 @@ import { RegisterTeamComponent } from './coordinator/register-team/register-team
 import { ShowDisciplineComponent } from './coordinator/show-discipline/show-discipline.component';
 import { ShowScheduleComponent } from './coordinator/show-schedule/show-schedule.component';
 import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
+import { RegisterTimeComponent } from './coordinator/register-time/register-time.component';
+import { ShowTimeComponent } from './coordinator/show-time/show-time.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -51,6 +53,11 @@ const routes: Routes = [
   {path: 'coordenador/cadastro-disciplina', component: RegisterDisciplineComponent},
   {path: 'coordenador/exibir-disciplina', component: ShowDisciplineComponent},
   {path: 'coordenador/atualizar-disciplina/:id', component: RegisterDisciplineComponent},
+
+  //Horarios
+  {path: 'coordenador/cadastro-horario', component: RegisterTimeComponent},
+  {path: 'coordenador/atualizar-horario/:id', component: RegisterTimeComponent},
+  {path: 'coordenador/exibir-horario', component: ShowTimeComponent},
 ];
 
 @NgModule({

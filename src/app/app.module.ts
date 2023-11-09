@@ -25,6 +25,8 @@ import { ShowDisciplineComponent } from './coordinator/show-discipline/show-disc
 import { ShowScheduleComponent } from './coordinator/show-schedule/show-schedule.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
+import { RegisterTimeComponent } from './coordinator/register-time/register-time.component';
+import { ShowTimeComponent } from './coordinator/show-time/show-time.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { RegisterScheduleComponent } from './coordinator/register-schedule/regis
     ShowDisciplineComponent,
     ShowScheduleComponent,
     RegisterScheduleComponent,
+    RegisterTimeComponent,
+    ShowTimeComponent,
     
   ],
   imports: [

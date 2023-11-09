@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <nav class="navbar navbar-expand-lg bg-white pe-3" style="height: 5%;">
-    <a class="navbar-brand txt-fatec txt-inter fs-3 mb-1 ms-4" [routerLink]="['/coordenador']">Fatec</a>
+    <a class="navbar-brand txt-fatec txt-inter fs-4 mb-1 ms-4" [routerLink]="['/coordenador']">Fatec</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Disciplinas
               </a>
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Professores
               </a>
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Turmas
               </a>
@@ -60,7 +60,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Cursos
               </a>
@@ -76,7 +76,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle txt-inter fs-5" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Salas
               </a>
@@ -84,6 +84,22 @@
                 <li><a class="dropdown-item" [routerLink]="['/coordenador/cadastro-sala']">Cadastrar</a>
                 </li>
                 <li><a class="dropdown-item" [routerLink]="['/coordenador/exibir-sala']">Exibir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle txt-inter fs-6" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Horários
+              </a>
+              <ul class="dropdown-menu mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" [routerLink]="['/coordenador/cadastro-horario']">Cadastrar</a>
+                </li>
+                <li><a class="dropdown-item" [routerLink]="['/coordenador/exibir-horario']">Exibir</a></li>
               </ul>
             </li>
           </ul>
@@ -107,6 +123,10 @@
 
         <li class="nav-item mobile-link">
           <a class="nav-link txt-inter fs-5" [routerLink]="['/coordenador/exibir-sala']">Salas</a>
+        </li>
+
+        <li class="nav-item mobile-link">
+          <a class="nav-link txt-inter fs-5" [routerLink]="['/coordenador/exibir-horario']">Horários</a>
         </li>
         <li class="nav-item">
           <div class="txt-inter mt-2 fs-5 username me-1">

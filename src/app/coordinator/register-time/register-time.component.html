@@ -1,0 +1,27 @@
+<app-header-coord></app-header-coord>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-8 m-auto">
+      <form [formGroup]="formGroupTime">
+        <div class="mb-3">
+          <div class="display-6 text-center">
+            Cadastro de Horários
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Horário</label>
+          <input type="text" formControlName="time" class="form-control" id="time" placeholder="Hora de inicio e final (ex: 13:20 - 14:10)">
+          <div *ngIf="submitted && time.invalid">
+            <small class="text-danger">Horário inválido!</small>
+          </div>
+        </div>
+        <div class="mb-3 d-flex justify-content-end gap-2">
+          <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
+          <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
+          <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

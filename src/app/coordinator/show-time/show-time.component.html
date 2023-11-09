@@ -1,0 +1,35 @@
+<app-header-coord></app-header-coord>
+<div class="container">
+    <div class="display-6 text-center mt-5">
+        Horários cadastrados
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-3 mt-5 d-flex">
+            <input class="form-control search" type="text" name="search" placeholder="Pesquisar... "
+                [(ngModel)]="filter">
+        </div>
+    </div>
+    <table *ngIf="times.length !== 0; else empty"f class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Horário</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let time of times | filter : filter">
+                <th scope="row">{{time.id}}</th>
+                <td>{{time.time}}</td>
+                <td>
+                    <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(time)"></ion-icon>
+                    <ion-icon class="optionIcons" name="trash-outline" (click)="delete(time)"></ion-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #empty>
+        <p class="txt-inter fs-3 text-center mt-5">Nenhum horário cadastrado.</p>
+    </ng-template>
+    <button class="btn btn-fatec float-end mt-1" (click)="create()">Novo horário</button>
+</div>
