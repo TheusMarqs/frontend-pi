@@ -22,11 +22,11 @@
     opacity: 80%;
 }
 
-input[type=number]::-webkit-inner-spin-button { 
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    
+
 }
-input[type=number] { 
+input[type=number] {
    -moz-appearance: textfield;
    appearance: textfield;
 

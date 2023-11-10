@@ -23,7 +23,7 @@ export class RegisterScheduleComponent implements OnInit {
   times: Time[] = [];
   submitted: boolean = false;
   isEditing: boolean = false;
-  formGroups: FormGroup[] = [];
+  formGroupSchedule: FormGroup;
   timesLength: number = 0;
 
   constructor(private professorService: ProfessorService,
@@ -35,8 +35,7 @@ export class RegisterScheduleComponent implements OnInit {
     private router: Router,
     private timeService: TimeService) {
 
-    for (let i = 0; i < this.timesLength; i++) {
-      const formGroup = formBuilder.group({
+    this.formGroupSchedule = formBuilder.group({
         id: [],
         day: [, [Validators.required, Validators.pattern(/\S/)]],
         time: [, [Validators.required]],
@@ -45,11 +44,7 @@ export class RegisterScheduleComponent implements OnInit {
         discipline: [, [Validators.required]],
         team: [, [Validators.required]],
       });
-
-      this.formGroups.push(formGroup);
     }
-    
-  }
 
   ngOnInit(): void {
     this.loadTimes();
@@ -67,7 +62,7 @@ export class RegisterScheduleComponent implements OnInit {
   getScheduleById(id: number) {
     this.scheduleService.getSchedule(id).subscribe({
       next: data => {
-        this.formGroups[0].setValue(data);
+        this.formGroupSchedule.setValue(data);
         this.isEditing = true;
       }
     })
@@ -77,8 +72,8 @@ export class RegisterScheduleComponent implements OnInit {
   save() {
     this.submitted = true;
     if (this.isEditing) {
-      if (this.formGroups[0].valid) {
-        this.scheduleService.update(this.formGroups[0].value).subscribe({
+      if (this.formGroupSchedule.valid) {
+        this.scheduleService.update(this.formGroupSchedule.value).subscribe({
           next: () => {
             this.router.navigate(['coordenador/exibir-agendamento']);
           }
@@ -87,7 +82,7 @@ export class RegisterScheduleComponent implements OnInit {
     }
 
     else {
-      this.scheduleService.save(this.formGroups[0].value).subscribe({
+      this.scheduleService.save(this.formGroupSchedule.value).subscribe({
         next: () => {
           this.router.navigate(['coordenador/exibir-agendamento']);
         }
@@ -97,7 +92,7 @@ export class RegisterScheduleComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-agendamento']);
+    this.router.navigate(['coordenador']);
   }
 
   loadTimes() {
@@ -112,7 +107,7 @@ export class RegisterScheduleComponent implements OnInit {
       }
     });
   }
-  
+
 
   loadProfessors() {
     this.professorService.getProfessors().subscribe({
@@ -131,13 +126,13 @@ export class RegisterScheduleComponent implements OnInit {
   }
 
   get professor(): any {
-    return this.formGroups[0].get("professor");
+    return this.formGroupSchedule.get("professor");
   }
 
   get classroom(): any {
-    return this.formGroups[0].get("classroom");
+    return this.formGroupSchedule.get("classroom");
   }
   get discipline(): any {
-    return this.formGroups[0].get("discipline");
+    return this.formGroupSchedule.get("discipline");
   }
 }

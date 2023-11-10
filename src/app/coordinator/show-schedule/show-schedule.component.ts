@@ -66,7 +66,7 @@ export class ShowScheduleComponent implements OnInit{
       }
     });
   }
-  
+
   loadSchedules() {
     this.scheduleService.getSchedules().subscribe({
       next: data => this.schedules = data
@@ -74,8 +74,8 @@ export class ShowScheduleComponent implements OnInit{
   }
 
 
-  create() {
-    this.router.navigate(['coordenador/cadastro-agendamento']);
+  create(id: number) {
+    this.router.navigate(['coordenador/cadastro-agendamento/', id]);
   }
 
   edit(schedules: Schedule) {
