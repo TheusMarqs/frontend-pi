@@ -17,6 +17,7 @@
                 <th scope="col">Tamanho</th>
                 <th scope="col">Semestre</th>
                 <th scope="col">Período</th>
+                <th scope="col">Horários</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td>{{team.students}} alunos</td>
                 <td>{{team.semester}}º semestre</td>
                 <td>{{team.period | titlecase }}</td>
+                <td>{{getTimeString(team.id)}}</td>
                 <td>
                     <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(team)"></ion-icon>
                     <ion-icon class="optionIcons" name="trash-outline" (click)="delete(team)"></ion-icon>

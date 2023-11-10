@@ -1,8 +1,7 @@
 export interface Schedule{
     id: number;
     day: string;
-    start_time: string;
-    end_time: string;
+    time: number;
     professor: number;
     classroom: number;
     discipline: number;

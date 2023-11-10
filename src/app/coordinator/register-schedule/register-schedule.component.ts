@@ -8,19 +8,23 @@ import { Discipline } from 'src/app/disciplines';
 import { ProfessorService } from 'src/app/professor.service';
 import { Professor } from 'src/app/professors';
 import { ScheduleService } from 'src/app/schedule.service';
+import { TimeService } from 'src/app/time.service';
+import { Time } from 'src/app/times';
 
 @Component({
   selector: 'app-register-schedule',
   templateUrl: './register-schedule.component.html',
-  styleUrls: ['./register-schedule.component.css','../../app.component.css']
+  styleUrls: ['./register-schedule.component.css', '../../app.component.css']
 })
-export class RegisterScheduleComponent implements OnInit{
+export class RegisterScheduleComponent implements OnInit {
   professors: Professor[] = [];
   classrooms: Classroom[] = [];
   disciplines: Discipline[] = [];
-  formGroupSchedule: FormGroup;
+  times: Time[] = [];
   submitted: boolean = false;
   isEditing: boolean = false;
+  formGroups: FormGroup[] = [];
+  timesLength: number = 0;
 
   constructor(private professorService: ProfessorService,
     private classroomService: ClassroomService,
@@ -28,34 +32,42 @@ export class RegisterScheduleComponent implements OnInit{
     private formBuilder: FormBuilder,
     private scheduleService: ScheduleService,
     private route: ActivatedRoute,
-    private router: Router){
+    private router: Router,
+    private timeService: TimeService) {
 
-      this.formGroupSchedule = formBuilder.group({
+    for (let i = 0; i < this.timesLength; i++) {
+      const formGroup = formBuilder.group({
         id: [],
         day: [, [Validators.required, Validators.pattern(/\S/)]],
-        start_time: [, [Validators.required, Validators.pattern(/\S/)]],
-        end_time: [, [Validators.required, Validators.pattern(/\S/)]],
+        time: [, [Validators.required]],
         professor: ['', [Validators.required]],
         classroom: [, [Validators.required]],
         discipline: [, [Validators.required]],
         team: [, [Validators.required]],
       });
+
+      this.formGroups.push(formGroup);
     }
+    
+  }
 
   ngOnInit(): void {
+    this.loadTimes();
     this.loadClassrooms();
     this.loadDisciplines();
     this.loadProfessors();
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    if(id){
+    if (id) {
       this.getScheduleById(id);
     }
   }
 
+
+
   getScheduleById(id: number) {
     this.scheduleService.getSchedule(id).subscribe({
       next: data => {
-        this.formGroupSchedule.setValue(data);
+        this.formGroups[0].setValue(data);
         this.isEditing = true;
       }
     })
@@ -65,8 +77,8 @@ export class RegisterScheduleComponent implements OnInit{
   save() {
     this.submitted = true;
     if (this.isEditing) {
-      if (this.formGroupSchedule.valid) {
-        this.scheduleService.update(this.formGroupSchedule.value).subscribe({
+      if (this.formGroups[0].valid) {
+        this.scheduleService.update(this.formGroups[0].value).subscribe({
           next: () => {
             this.router.navigate(['coordenador/exibir-agendamento']);
           }
@@ -75,7 +87,7 @@ export class RegisterScheduleComponent implements OnInit{
     }
 
     else {
-      this.scheduleService.save(this.formGroupSchedule.value).subscribe({
+      this.scheduleService.save(this.formGroups[0].value).subscribe({
         next: () => {
           this.router.navigate(['coordenador/exibir-agendamento']);
         }
@@ -88,30 +100,44 @@ export class RegisterScheduleComponent implements OnInit{
     this.router.navigate(['coordenador/exibir-agendamento']);
   }
 
-  loadProfessors(){
+  loadTimes() {
+    this.timeService.getTimes().subscribe({
+      next: data => {
+        this.times = data;
+        this.timesLength = data.length;
+        console.log(this.timesLength);
+      },
+      error: error => {
+        console.error('Erro ao carregar os horários:', error);
+      }
+    });
+  }
+  
+
+  loadProfessors() {
     this.professorService.getProfessors().subscribe({
       next: data => this.professors = data
     });
   }
-  loadClassrooms(){
+  loadClassrooms() {
     this.classroomService.getClassrooms().subscribe({
       next: data => this.classrooms = data
     });
   }
-  loadDisciplines(){
+  loadDisciplines() {
     this.disciplineService.getDisciplines().subscribe({
       next: data => this.disciplines = data
     });
   }
 
   get professor(): any {
-    return this.formGroupSchedule.get("professor");
+    return this.formGroups[0].get("professor");
   }
 
   get classroom(): any {
-    return this.formGroupSchedule.get("classroom");
+    return this.formGroups[0].get("classroom");
   }
   get discipline(): any {
-    return this.formGroupSchedule.get("discipline");
+    return this.formGroups[0].get("discipline");
   }
 }

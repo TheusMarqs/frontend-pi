@@ -40,6 +40,25 @@
             <small class="text-danger">Período inválido!</small>
           </div>
         </div>
+
+        <div class="list-group mb-3">
+
+          <label class="form-label mb-3">Horários desta turma: </label>
+          <div *ngIf="times.length !== 0; else empty">
+            <label *ngFor="let time of times" class="list-group-item">
+              <input type="checkbox" [checked]="timeArray.value.includes(time.id)" (change)="toggleTime(time.id)">
+              {{time.time}}
+            </label>
+            <div *ngIf="submitted && time.invalid">
+              <small class="text-danger">Horários inválidos!</small>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #empty>
+          <p class="txt-inter fs-4 text-center">Nenhum horário cadastrado.</p>
+        </ng-template>
+
         <div class="mb-3 d-flex justify-content-end gap-2">
           <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
           <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
@@ -49,3 +68,4 @@
     </div>
   </div>
 </div>
+

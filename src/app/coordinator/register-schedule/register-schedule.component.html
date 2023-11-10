@@ -5,11 +5,12 @@
         Segunda feira
         <button [routerLink]="['/coordenador']" class="btn btn-fatec ms-5">Voltar</button>
     </div>
-    <form [formGroup]="formGroupSchedule">
-        <div class="row">
+    <form *ngFor="let time of times; let i = index" [formGroup]="formGroups[i]">
+        <div class="row mt-5">
             <div class="col-md-4">
-                <input type="text" disabled class="form-control mt-5" value="13:20 - 14:10">
-                <select formControlName="classroom" class="form-select mt-4">
+                <input type="text" class="form-control mt-5" disabled value="{{time.time}}">
+                <input style="display: none;" type="text" formControlName="time" class="form-control mt-2" value="{{time.id}}">
+                <select formControlName="classroom" class="form-select mt-2">
                     <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
                         {{ classroom.type | titlecase }} - {{classroom.number}}
                     </option>
@@ -19,7 +20,7 @@
                     <small class="text-danger">Sala inválida!</small>
                 </div>
 
-                <select formControlName="discipline" class="form-select mt-4">
+                <select formControlName="discipline" class="form-select mt-2">
                     <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
                         {{ discipline.name | titlecase }}
                     </option>
@@ -29,7 +30,7 @@
                     <small class="text-danger">Disciplina inválida!</small>
                 </div>
 
-                <select formControlName="professor" class="form-select mt-4">
+                <select formControlName="professor" class="form-select mt-2">
                     <option *ngFor="let professor of professors" value="{{professor.id}}">
                         {{ professor.name | titlecase }}
                     </option>
@@ -41,177 +42,9 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="14:10 - 15:00">
-                <select formControlName="classroom" class="form-select mt-4">
-                    <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
-                        {{ classroom.type | titlecase }} - {{classroom.number}}
-                    </option>
-                    <option value="0" *ngIf="classrooms.length === 0" disabled>Nenhuma sala cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && classroom.invalid">
-                    <small class="text-danger">Sala inválida!</small>
-                </div>
-
-                <select formControlName="discipline" class="form-select mt-4">
-                    <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
-                        {{ discipline.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="disciplines.length === 0" disabled>Nenhuma disciplina cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && discipline.invalid">
-                    <small class="text-danger">Disciplina inválida!</small>
-                </div>
-
-                <select formControlName="professor" class="form-select mt-4">
-                    <option *ngFor="let professor of professors" value="{{professor.id}}">
-                        {{ professor.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="professors.length === 0" disabled>Nenhum professor cadastrado.</option>
-                </select>
-
-                <div *ngIf="submitted && professor.invalid">
-                    <small class="text-danger">Professor inválido!</small>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="15:10 - 16:00">
-                <select formControlName="classroom" class="form-select mt-4">
-                    <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
-                        {{ classroom.type | titlecase }} - {{classroom.number}}
-                    </option>
-                    <option value="0" *ngIf="classrooms.length === 0" disabled>Nenhuma sala cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && classroom.invalid">
-                    <small class="text-danger">Sala inválida!</small>
-                </div>
-
-                <select formControlName="discipline" class="form-select mt-4">
-                    <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
-                        {{ discipline.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="disciplines.length === 0" disabled>Nenhuma disciplina cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && discipline.invalid">
-                    <small class="text-danger">Disciplina inválida!</small>
-                </div>
-
-                <select formControlName="professor" class="form-select mt-4">
-                    <option *ngFor="let professor of professors" value="{{professor.id}}">
-                        {{ professor.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="professors.length === 0" disabled>Nenhum professor cadastrado.</option>
-                </select>
-
-                <div *ngIf="submitted && professor.invalid">
-                    <small class="text-danger">Professor inválido!</small>
-                </div>
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="16:00 - 16:50">
-                <select formControlName="classroom" class="form-select mt-4">
-                    <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
-                        {{ classroom.type | titlecase }} - {{classroom.number}}
-                    </option>
-                    <option value="0" *ngIf="classrooms.length === 0" disabled>Nenhuma sala cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && classroom.invalid">
-                  <small class="text-danger">Sala inválida!</small>
-                </div>
-
-                <select formControlName="discipline" class="form-select mt-4">
-                    <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
-                        {{ discipline.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="disciplines.length === 0" disabled>Nenhuma disciplina cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && discipline.invalid">
-                  <small class="text-danger">Disciplina inválida!</small>
-                </div>
-
-                <select formControlName="professor" class="form-select mt-4">
-                    <option *ngFor="let professor of professors" value="{{professor.id}}">
-                        {{ professor.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="professors.length === 0" disabled>Nenhum professor cadastrado.</option>
-                </select>
-                <div *ngIf="submitted && professor.invalid">
-                  <small class="text-danger">Professor inválido!</small>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="17:00 - 17:50">
-                <select formControlName="classroom" class="form-select mt-4">
-                    <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
-                        {{ classroom.type | titlecase }} - {{classroom.number}}
-                    </option>
-                    <option value="0" *ngIf="classrooms.length === 0" disabled>Nenhuma sala cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && classroom.invalid">
-                  <small class="text-danger">Sala inválida!</small>
-                </div>
-
-                <select formControlName="discipline" class="form-select mt-4">
-                    <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
-                        {{ discipline.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="disciplines.length === 0" disabled>Nenhuma disciplina cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && discipline.invalid">
-                  <small class="text-danger">Disciplina inválida!</small>
-                </div>
-
-                <select formControlName="professor" class="form-select mt-4">
-                    <option *ngFor="let professor of professors" value="{{professor.id}}">
-                        {{ professor.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="professors.length === 0" disabled>Nenhum professor cadastrado.</option>
-                </select>
-                <div *ngIf="submitted && professor.invalid">
-                  <small class="text-danger">Professor inválido!</small>
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-                <input type="text" class="form-control mt-5" disabled value="17:50 - 18:40">
-                <select formControlName="classroom" class="form-select mt-4">
-                    <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
-                        {{ classroom.type | titlecase }} - {{classroom.number}}
-                    </option>
-                    <option value="0" *ngIf="classrooms.length === 0" disabled>Nenhuma sala cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && classroom.invalid">
-                  <small class="text-danger">Sala inválida!</small>
-                </div>
-
-                <select formControlName="discipline" class="form-select mt-4">
-                    <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
-                        {{ discipline.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="disciplines.length === 0" disabled>Nenhuma disciplina cadastrada.</option>
-                </select>
-                <div *ngIf="submitted && discipline.invalid">
-                  <small class="text-danger">Disciplina inválida!</small>
-                </div>
-
-                <select formControlName="professor" class="form-select mt-4">
-                    <option *ngFor="let professor of professors" value="{{professor.id}}">
-                        {{ professor.name | titlecase }}
-                    </option>
-                    <option value="0" *ngIf="professors.length === 0" disabled>Nenhum professor cadastrado.</option>
-                </select>
-                <div *ngIf="submitted && professor.invalid">
-                  <small class="text-danger">Professor inválido!</small>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 d-flex justify-content-end gap-2">
+        <div class="mb-3 d-flex justify-content-end gap-2 mt-3">
           <button *ngIf="isEditing == false" class="btn btn-success" (click)="save()">Salvar</button>
           <button *ngIf="isEditing == true" class="btn btn-success" (click)="save()">Atualizar</button>
           <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
