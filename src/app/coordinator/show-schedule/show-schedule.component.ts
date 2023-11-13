@@ -34,6 +34,8 @@ export class ShowScheduleComponent implements OnInit{
   }
 
 
+
+
   getTeamById(teamId: number) {
     this.teamService.getTeam(teamId).subscribe({
       next: (team) => {
@@ -75,7 +77,8 @@ export class ShowScheduleComponent implements OnInit{
 
 
   create(id: number) {
-    this.router.navigate(['coordenador/cadastro-agendamento/', id]);
+    const idTeam = Number(this.route.snapshot.paramMap.get("id"));
+    this.router.navigate(['coordenador/cadastro-agendamento/', idTeam, id]);
   }
 
   edit(schedules: Schedule) {
