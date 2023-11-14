@@ -12,7 +12,7 @@ import { Team } from 'src/app/teams';
   templateUrl: './show-schedule.component.html',
   styleUrls: ['./show-schedule.component.css', '../../app.component.css']
 })
-export class ShowScheduleComponent implements OnInit{
+export class ShowScheduleComponent implements OnInit {
   teams: Team[] = [];
   schedules: Schedule[] = [];
   courses: Course[] = [];
@@ -24,17 +24,14 @@ export class ShowScheduleComponent implements OnInit{
     private route: ActivatedRoute,
     private courseService: CourseService,
     private scheduleService: ScheduleService,
-    private router: Router){
+    private router: Router) {
   }
 
   ngOnInit(): void {
+    this.loadSchedules();
     const id = Number(this.route.snapshot.paramMap.get("id"));
     this.getTeamById(id);
-    this.loadSchedules()
   }
-
-
-
 
   getTeamById(teamId: number) {
     this.teamService.getTeam(teamId).subscribe({
@@ -71,7 +68,7 @@ export class ShowScheduleComponent implements OnInit{
 
   loadSchedules() {
     this.scheduleService.getSchedules().subscribe({
-      next: data => this.schedules = data
+      next: (data) => (this.schedules = data),
     });
   }
 

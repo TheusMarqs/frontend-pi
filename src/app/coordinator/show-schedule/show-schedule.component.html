@@ -13,10 +13,11 @@
   </div>
 
 
-  <table *ngIf="courses.length !== 0; else empty" f class="table mt-5">
+  <table *ngIf="schedules.length !== 0; else empty" f class="table mt-5">
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Dia</th>
         <th scope="col">Horário</th>
         <th scope="col">Sala</th>
         <th scope="col">Professor</th>
@@ -27,7 +28,8 @@
     <tbody>
       <tr *ngFor="let schedule of schedules | filter : filter">
         <th scope="row">{{schedule.id}}</th>
-        <td>{{schedule.start_time}} - {{schedule.end_time}}</td>
+        <td>{{schedule.weekday | titlecase }}</td>
+        <td>{{schedule.time}}</td>
         <td>Sala {{schedule.classroom}}</td>
         <td>{{schedule.professor}}</td>
         <td>{{schedule.discipline}}</td>
@@ -43,7 +45,7 @@
   </ng-template>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fatec float-end mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-fatec float-end mt-1 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Novo agendamento
   </button>
 
@@ -64,7 +66,7 @@
           <a class="btn btn-fatec" (click)="create(6)" data-bs-dismiss="modal">Sábado</a>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>

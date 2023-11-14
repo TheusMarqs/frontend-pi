@@ -41,7 +41,7 @@ export class RegisterScheduleComponent implements OnInit {
   ) {
     this.formGroupSchedule = formBuilder.group({
       id: [],
-      day: [, [Validators.required, Validators.pattern(/\S/)]],
+      weekday: [, [Validators.required, Validators.pattern(/\S/)]],
       time: [, [Validators.required]],
       professor: ['', [Validators.required]],
       classroom: [, [Validators.required]],
@@ -55,11 +55,16 @@ export class RegisterScheduleComponent implements OnInit {
     this.loadClassrooms();
     this.loadDisciplines();
     this.loadProfessors();
+    
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.showDayById(id);
-      this.getScheduleById(id);
+      this.getTeamByUrl(id);
     }
+  }
+
+  getTeamByUrl(id: number){
+    this.teamId = id;
   }
 
   showDayById(id: number) {
@@ -105,19 +110,19 @@ export class RegisterScheduleComponent implements OnInit {
       if (this.formGroupSchedule.valid) {
         this.scheduleService.update(this.formGroupSchedule.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-agendamento']);
+            this.router.navigate(['coordenador']);
           },
         });
       }
     } else {
       this.scheduleService.save({
         ...this.formGroupSchedule.value,
-        day: this.weekDay,
+        weekday: this.weekDay,
         team: this.teamId
       }).subscribe({
         next: () => {
           // Lógica a ser executada após o salvamento
-          this.router.navigate(['coordenador/exibir-agendamento']);
+          this.router.navigate(['coordenador']);
         },
       });
 
