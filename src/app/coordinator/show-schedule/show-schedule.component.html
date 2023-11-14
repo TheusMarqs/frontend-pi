@@ -26,13 +26,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let schedule of schedules | filter : filter">
+      <tr *ngFor="let schedule of filteredSchedules | filter : filter">
         <th scope="row">{{schedule.id}}</th>
         <td>{{schedule.weekday | titlecase }}</td>
-        <td>{{schedule.time}}</td>
+        <td>{{ getTimeString(schedule.id) }}</td>
         <td>Sala {{schedule.classroom}}</td>
-        <td>{{schedule.professor}}</td>
-        <td>{{schedule.discipline}}</td>
+        <td>{{ getProfessorName(schedule.id) | titlecase }}</td>
+        <td>{{ getDisciplineName(schedule.id) | titlecase }}</td>
         <td>
           <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(schedule)"></ion-icon>
           <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>

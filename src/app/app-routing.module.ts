@@ -29,6 +29,7 @@ const routes: Routes = [
   {path: 'coordenador/exibir-agendamento/:id', component: ShowScheduleComponent},
   {path: 'coordenador/cadastro-agendamento', component: RegisterScheduleComponent},
   {path: 'coordenador/cadastro-agendamento/:id/:id', component: RegisterScheduleComponent},
+  {path: 'coordenador/atualizar-agendamento/:id/:id', component: RegisterScheduleComponent},
 
   //Professores
   {path: 'coordenador/cadastro-professor', component: RegisterProfessorComponent},

@@ -55,17 +55,40 @@ export class RegisterScheduleComponent implements OnInit {
     this.loadClassrooms();
     this.loadDisciplines();
     this.loadProfessors();
-    
+
+    const currentUrl = this.route.snapshot.url.join('/');
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.showDayById(id);
       this.getTeamByUrl(id);
+    }
+
+    // Verifique se a URL contém a string desejada
+    if (currentUrl.includes('atualizar-agendamento')) {
+      // Faça alguma coisa se a URL for "atualizar-agendamento"
+      this.getScheduleById(id);
     }
   }
 
   getTeamByUrl(id: number){
     this.teamId = id;
   }
+
+  goBack() {
+    const urlSegments = this.route.snapshot.url;
+
+    // Obtém os valores diretamente dos segmentos da URL
+    const id1 = Number(urlSegments[2]);  // 1º segmento depois de "coordenador/cadastro-agendamento/"
+    const id2 = Number(urlSegments[3]);  // 2º segmento depois de "coordenador/cadastro-agendamento/"
+
+    // Escolha qual parâmetro usar para a navegação
+    const selectedId = isNaN(id1) ? id2 : id1;
+
+    this.router.navigate(['coordenador/exibir-agendamento', selectedId]);
+  }
+
+
+
 
   showDayById(id: number) {
     switch (id) {
@@ -110,7 +133,7 @@ export class RegisterScheduleComponent implements OnInit {
       if (this.formGroupSchedule.valid) {
         this.scheduleService.update(this.formGroupSchedule.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador']);
+            this.goBack();
           },
         });
       }
@@ -121,8 +144,7 @@ export class RegisterScheduleComponent implements OnInit {
         team: this.teamId
       }).subscribe({
         next: () => {
-          // Lógica a ser executada após o salvamento
-          this.router.navigate(['coordenador']);
+          this.goBack();
         },
       });
 
@@ -130,7 +152,7 @@ export class RegisterScheduleComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador']);
+    this.goBack();
   }
 
   loadTimes() {
@@ -138,7 +160,6 @@ export class RegisterScheduleComponent implements OnInit {
       next: (data) => {
         this.times = data;
         this.timesLength = data.length;
-        console.log(this.timesLength);
       },
       error: (error) => {
         console.error('Erro ao carregar os horários:', error);

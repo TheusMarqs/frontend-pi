@@ -26,7 +26,7 @@ export class RegisterTimeComponent {
     });
   }
 
-  
+
 
   ngOnInit(): void {
     this.timeService.getTimes().subscribe((times) => {

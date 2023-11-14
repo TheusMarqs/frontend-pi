@@ -33,7 +33,7 @@ export class ShowTeamComponent {
       this.times = times;
     });
   }
-  
+
   loadCourses(){
     this.courseService.getCourses().subscribe((courses) => {
       this.courses = courses;
@@ -51,7 +51,7 @@ export class ShowTeamComponent {
 
   getTimeString(teamId: number): string {
     const team = this.teams.find((team) => team.id === teamId);
-  
+
     if (team) {
       const timeStrings = Array.isArray(team.time)
         ? team.time.map((timeId) => {
@@ -59,15 +59,15 @@ export class ShowTeamComponent {
             return time ? time.time : 'Horário não encontrado';
           })
         : ['Horário não encontrado'];
-  
+
       return timeStrings.join(', ');
     }
-  
+
     return 'Turma não encontrada';
   }
-  
-  
-  
+
+
+
 
   loadTeams() {
     this.teamService.getTeams().subscribe({

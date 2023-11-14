@@ -3,7 +3,7 @@
 <div class="container">
   <div class="display-6 text-center mt-5">
     {{weekDay}}
-    <button [routerLink]="['/coordenador']" class="btn btn-fatec ms-5">Voltar</button>
+    <button (click)="goBack()" class="btn btn-fatec ms-5">Voltar</button>
   </div>
   <form [formGroup]="formGroupSchedule">
     <div class="row mt-5">
