@@ -29,6 +29,7 @@ export class ShowScheduleComponent implements OnInit {
   filter: string = '';
   times: Time[] = [];
   filteredSchedules: Schedule[] = [];
+  
 
   constructor(private teamService: TeamService,
     private route: ActivatedRoute,
@@ -50,7 +51,6 @@ export class ShowScheduleComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get("id"));
     if (id){
       this.getTeamById(id);
-      this.filterByTeam(id);
     }
   }
 
@@ -61,14 +61,19 @@ export class ShowScheduleComponent implements OnInit {
   }
 
   filterByTeam(teamId: number) {
+    const weekdaysOrder = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
     console.log('Team ID:', teamId);
     console.log('Schedules:', this.schedules);
-
-    this.filteredSchedules = this.schedules.filter(schedule => {
-      console.log('Schedule Team:', schedule.team);
-      return schedule.team === teamId;
-    });
-
+  
+    this.filteredSchedules = this.schedules
+      .filter(schedule => schedule.team === teamId)
+      .sort((a, b) => {
+        const dayA = weekdaysOrder.indexOf(a.weekday);
+        const dayB = weekdaysOrder.indexOf(b.weekday);
+        return dayA - dayB;
+      });
+  
     console.log('Filtered Schedules:', this.filteredSchedules);
   }
 
@@ -154,7 +159,15 @@ export class ShowScheduleComponent implements OnInit {
 
   loadSchedules() {
     this.scheduleService.getSchedules().subscribe({
-      next: (data) => (this.schedules = data),
+      next: (data) => {
+        this.schedules = data;
+        console.log('Schedules:', this.schedules);
+        // Chame o filterByTeam aqui para garantir que ele seja chamado após o carregamento
+        const id = Number(this.route.snapshot.paramMap.get("id"));
+        if (id){
+          this.filterByTeam(id);
+        }
+      },
     });
   }
 

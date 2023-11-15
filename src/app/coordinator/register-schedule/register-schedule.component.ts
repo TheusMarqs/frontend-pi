@@ -58,9 +58,18 @@ export class RegisterScheduleComponent implements OnInit {
 
     const currentUrl = this.route.snapshot.url.join('/');
     const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    const urlSegments = this.route.snapshot.url;
+
+    // Obtém os valores diretamente dos segmentos da URL
+    const id1 = Number(urlSegments[2]);  // 1º segmento depois de "coordenador/cadastro-agendamento/"
+
+    if (urlSegments) {
+      this.getTeamByUrl(id1)
+    }
+
     if (id) {
       this.showDayById(id);
-      this.getTeamByUrl(id);
     }
 
     // Verifique se a URL contém a string desejada
