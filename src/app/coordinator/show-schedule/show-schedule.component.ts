@@ -12,6 +12,8 @@ import { Schedule } from 'src/app/schedules';
 import { TeamService } from 'src/app/team.service';
 import { Team } from 'src/app/teams';
 import { Professor } from 'src/app/professors';
+import { Classroom } from 'src/app/classrooms';
+import { ClassroomService } from 'src/app/classroom.service';
 
 @Component({
   selector: 'app-show-schedule',
@@ -29,6 +31,7 @@ export class ShowScheduleComponent implements OnInit {
   filter: string = '';
   times: Time[] = [];
   filteredSchedules: Schedule[] = [];
+  classrooms: Classroom[] = [];
   
 
   constructor(private teamService: TeamService,
@@ -38,7 +41,8 @@ export class ShowScheduleComponent implements OnInit {
     private router: Router,
     private timeService: TimeService,
     private professorService: ProfessorService,
-    private disciplineService: DisciplineService) {
+    private disciplineService: DisciplineService,
+    private classroomService: ClassroomService) {
   }
 
   ngOnInit(): void {
@@ -47,11 +51,18 @@ export class ShowScheduleComponent implements OnInit {
     this.loadProfessors();
     this.loadDisciplines();
     this.loadTeams();
+    this.loadClassrooms();
 
     const id = Number(this.route.snapshot.paramMap.get("id"));
     if (id){
       this.getTeamById(id);
     }
+  }
+
+  loadClassrooms(){
+    this.classroomService.getClassrooms().subscribe({
+      next: (data) => (this.classrooms = data),
+    });
   }
 
   loadTeams(){
@@ -105,6 +116,8 @@ export class ShowScheduleComponent implements OnInit {
 
     return 'Turma não encontrada';
   }
+
+
 
   getTeamById(teamId: number) {
     this.teamService.getTeam(teamId).subscribe({

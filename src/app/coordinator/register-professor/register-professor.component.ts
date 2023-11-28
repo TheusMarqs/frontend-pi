@@ -24,7 +24,7 @@ export class RegisterProfessorComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/\S/)]],
       education: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: [false]
+      status: [false]
     });
   }
 

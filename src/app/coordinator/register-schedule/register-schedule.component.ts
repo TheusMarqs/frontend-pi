@@ -1,6 +1,6 @@
 import { Schedule } from './../../schedules';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassroomService } from 'src/app/classroom.service';
 import { Classroom } from 'src/app/classrooms';
@@ -11,7 +11,7 @@ import { Professor } from 'src/app/professors';
 import { ScheduleService } from 'src/app/schedule.service';
 import { TimeService } from 'src/app/time.service';
 import { Time } from 'src/app/times';
-
+ 
 @Component({
   selector: 'app-register-schedule',
   templateUrl: './register-schedule.component.html',
@@ -25,10 +25,11 @@ export class RegisterScheduleComponent implements OnInit {
   submitted: boolean = false;
   isEditing: boolean = false;
   formGroupSchedule: FormGroup;
-  timesLength: number = 0;
   weekDay: string = '';
   teamId: number = 0;
-
+  formGroups: FormGroup[] = [];
+  timesLength: number = 0;
+ 
   constructor(
     private professorService: ProfessorService,
     private classroomService: ClassroomService,
@@ -40,105 +41,135 @@ export class RegisterScheduleComponent implements OnInit {
     private timeService: TimeService
   ) {
     this.formGroupSchedule = formBuilder.group({
-      id: [],
-      weekday: [, [Validators.required, Validators.pattern(/\S/)]],
-      time: [, [Validators.required]],
-      professor: ['', [Validators.required]],
-      classroom: [, [Validators.required]],
-      discipline: [, [Validators.required]],
-      team: [, [Validators.required]],
+      scheduleArray: this.formBuilder.array([])
     });
   }
-
+ 
   ngOnInit(): void {
     this.loadTimes();
     this.loadClassrooms();
     this.loadDisciplines();
     this.loadProfessors();
-
+ 
     const currentUrl = this.route.snapshot.url.join('/');
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
+ 
     const urlSegments = this.route.snapshot.url;
-
+ 
     // Obtém os valores diretamente dos segmentos da URL
     const id1 = Number(urlSegments[2]);  // 1º segmento depois de "coordenador/cadastro-agendamento/"
-
+ 
     if (urlSegments) {
       this.getTeamByUrl(id1)
     }
-
+ 
     if (id) {
       this.showDayById(id);
     }
-
+ 
     // Verifique se a URL contém a string desejada
     if (currentUrl.includes('atualizar-agendamento')) {
       // Faça alguma coisa se a URL for "atualizar-agendamento"
       this.getScheduleById(id);
     }
+ 
   }
-
-  getTeamByUrl(id: number){
+ 
+ 
+  getTeamByUrl(id: number) {
     this.teamId = id;
   }
-
+ 
   goBack() {
     const urlSegments = this.route.snapshot.url;
-
+ 
     // Obtém os valores diretamente dos segmentos da URL
     const id1 = Number(urlSegments[2]);  // 1º segmento depois de "coordenador/cadastro-agendamento/"
     const id2 = Number(urlSegments[3]);  // 2º segmento depois de "coordenador/cadastro-agendamento/"
-
+ 
     // Escolha qual parâmetro usar para a navegação
     const selectedId = isNaN(id1) ? id2 : id1;
-
+ 
     this.router.navigate(['coordenador/exibir-agendamento', selectedId]);
   }
-
-
-
-
+ 
+ 
+ 
+ 
   showDayById(id: number) {
     switch (id) {
       case 1:
         this.weekDay = 'Segunda-feira';
         break;
-
+ 
       case 2:
         this.weekDay = 'Terça-feira';
         break;
-
+ 
       case 3:
         this.weekDay = 'Quarta-feira';
         break;
-
+ 
       case 4:
         this.weekDay = 'Quinta-feira';
         break;
-
+ 
       case 5:
         this.weekDay = 'Sexta-feira';
         break;
-
+ 
       case 6:
         this.weekDay = 'Sábado';
         break;
     }
   }
-
+ 
   getScheduleById(id: number) {
     this.scheduleService.getSchedule(id).subscribe({
       next: (data) => {
-        this.formGroupSchedule.setValue(data);
+        console.log('Received schedule data:', data);
         this.isEditing = true;
+        this.populateFormWithData(data);
+      },
+      error: (error) => {
+        console.error('Erro ao recuperar o agendamento:', error);
       },
     });
   }
-
+  
+  populateFormWithData(data: any) {
+    if (data && data.scheduleArray) {
+      const scheduleArray = this.formGroupSchedule.get('scheduleArray') as FormArray;
+  
+      // Limpar o array existente
+      scheduleArray.clear();
+  
+      // Preencher o array com os dados do agendamento
+      data.scheduleArray.forEach((scheduleItem: any) => {
+        const control = this.formBuilder.group({
+          time: [scheduleItem.time, [Validators.required]],
+          professor: [scheduleItem.professor, [Validators.required]],
+          classroom: [scheduleItem.classroom, [Validators.required]],
+          discipline: [scheduleItem.discipline, [Validators.required]],
+        });
+        scheduleArray.push(control);
+      });
+    }
+  
+    // Preencher o restante do formulário
+    this.formGroupSchedule.patchValue({
+      weekday: data.weekday || '',
+      team: data.team || '',
+    });
+  }
+  
+    
+  
+ 
   save() {
     this.submitted = true;
     if (this.isEditing) {
+      console.log(this.formGroupSchedule.value);
       if (this.formGroupSchedule.valid) {
         this.scheduleService.update(this.formGroupSchedule.value).subscribe({
           next: () => {
@@ -147,35 +178,58 @@ export class RegisterScheduleComponent implements OnInit {
         });
       }
     } else {
-      this.scheduleService.save({
-        ...this.formGroupSchedule.value,
+      const scheduleArray = this.formGroupSchedule.value.scheduleArray.map((scheduleItem: any) => ({
+        ...scheduleItem,
         weekday: this.weekDay,
-        team: this.teamId
-      }).subscribe({
+        team: this.teamId,
+      }));
+ 
+      this.scheduleService.save(scheduleArray).subscribe({
         next: () => {
           this.goBack();
         },
       });
-
+ 
     }
   }
-
+ 
   cancel() {
     this.goBack();
   }
-
+ 
   loadTimes() {
     this.timeService.getTimes().subscribe({
       next: (data) => {
         this.times = data;
         this.timesLength = data.length;
+ 
+        for (let i = 0; i < this.timesLength; i++) {
+          this.addScheduleItem();
+        };
       },
       error: (error) => {
         console.error('Erro ao carregar os horários:', error);
       },
     });
   }
-
+ 
+  getScheduleArrayControls(): AbstractControl[] {
+    const scheduleArray = this.formGroupSchedule.get('scheduleArray') as FormArray;
+    return scheduleArray ? scheduleArray.controls : [];
+  }
+ 
+  addScheduleItem() {
+    const scheduleArray = this.formGroupSchedule.get('scheduleArray') as FormArray;
+ 
+    // Adicione os controles do item à matriz, usando os dados do registro 'time'
+    scheduleArray.push(this.formBuilder.group({
+      time: [, [Validators.required]],
+      professor: [, [Validators.required]],
+      classroom: [, [Validators.required]],
+      discipline: [, [Validators.required]],
+    }));
+  }
+ 
   loadProfessors() {
     this.professorService.getProfessors().subscribe({
       next: (data) => (this.professors = data),
@@ -191,15 +245,15 @@ export class RegisterScheduleComponent implements OnInit {
       next: (data) => (this.disciplines = data),
     });
   }
-
-  get professor(): any {
-    return this.formGroupSchedule.get('professor');
-  }
-
-  get classroom(): any {
-    return this.formGroupSchedule.get('classroom');
-  }
-  get discipline(): any {
-    return this.formGroupSchedule.get('discipline');
-  }
+ 
+  // get professor(): any {
+  //   return this.formGroupSchedule.get('professor');
+  // }
+ 
+  // get classroom(): any {
+  //   return this.formGroupSchedule.get('classroom');
+  // }
+  // get discipline(): any {
+  //   return this.formGroupSchedule.get('discipline');
+  // }
 }

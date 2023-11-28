@@ -4,5 +4,5 @@ export interface Professor{
     email: string;
     password: string;
     education: string; 
-    condition: boolean;
+    status: boolean;
 }

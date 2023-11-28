@@ -28,8 +28,8 @@
                 <td>{{professor.email}}</td>
                 <td>{{professor.password}}</td>
                 <td>{{professor.education | titlecase }}</td>
-                <td *ngIf="professor.condition == true">Ativo</td>
-                <td *ngIf="professor.condition == false">Inativo</td>
+                <td *ngIf="professor.status == true">Ativo</td>
+                <td *ngIf="professor.status == false">Inativo</td>
                 <td>
                     <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(professor)"></ion-icon>
                     <ion-icon class="optionIcons" name="trash-outline" (click)="delete(professor)"></ion-icon>
