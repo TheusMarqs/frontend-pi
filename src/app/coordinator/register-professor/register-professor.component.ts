@@ -14,9 +14,9 @@ export class RegisterProfessorComponent implements OnInit {
   submitted: boolean = false;
   isEditing: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private professorService: ProfessorService,
+  constructor(private formBuilder: FormBuilder, public professorService: ProfessorService,
     private route: ActivatedRoute,
-    private router: Router) {
+    public router: Router) {
 
     this.formGroupProfessor = formBuilder.group({
       id: [],
