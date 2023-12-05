@@ -154,6 +154,15 @@ export class ShowScheduleComponent implements OnInit {
     return 'Agendamento não encontrado';
   }
 
+  getClassroomNumber(scheduleId: number): number | string {
+    const schedule = this.schedules.find((schedule) => schedule.id === scheduleId);
+    if (schedule) {
+      const classroom = this.classrooms.find((classroom) => classroom.id === schedule.classroom);
+      return classroom ? classroom.number : 'Sala não encontrada';
+    }
+    return 'Agendamento não encontrado';
+  }
+
   getCourseName(courseId: number) {
     this.courseService.getCourseName(courseId).subscribe({
       next: (courseName) => {
@@ -190,9 +199,15 @@ export class ShowScheduleComponent implements OnInit {
     this.router.navigate(['coordenador/cadastro-agendamento/', idTeam, id]);
   }
 
-  edit(schedules: Schedule) {
+  edit(schedule: Schedule) {
     const idTeam = Number(this.route.snapshot.paramMap.get("id"));
-    this.router.navigate(['coordenador/atualizar-agendamento', idTeam, schedules.id]);
+    const dayOfWeekId = this.getDayOfWeekId(schedule.weekday);
+    this.router.navigate(['coordenador/atualizar-agendamento', idTeam, dayOfWeekId]);
+  }
+  
+  getDayOfWeekId(dayOfWeek: string): number {
+    const weekdaysOrder = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    return weekdaysOrder.indexOf(dayOfWeek) + 1;
   }
 
   delete(schedules: Schedule) {

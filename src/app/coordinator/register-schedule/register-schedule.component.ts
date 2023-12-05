@@ -26,6 +26,7 @@ export class RegisterScheduleComponent implements OnInit {
   isEditing: boolean = false;
   formGroupSchedule: FormGroup;
   weekDay: string = '';
+  weekDayId: number = 0;
   teamId: number = 0;
   formGroups: FormGroup[] = [];
   timesLength: number = 0;
@@ -50,30 +51,31 @@ export class RegisterScheduleComponent implements OnInit {
     this.loadClassrooms();
     this.loadDisciplines();
     this.loadProfessors();
- 
+
     const currentUrl = this.route.snapshot.url.join('/');
     const id = Number(this.route.snapshot.paramMap.get('id'));
- 
+
     const urlSegments = this.route.snapshot.url;
- 
+
     // Obtém os valores diretamente dos segmentos da URL
     const id1 = Number(urlSegments[2]);  // 1º segmento depois de "coordenador/cadastro-agendamento/"
- 
+
     if (urlSegments) {
       this.getTeamByUrl(id1)
     }
- 
+
     if (id) {
+      this.weekDayId = id;
       this.showDayById(id);
     }
- 
+
     // Verifique se a URL contém a string desejada
-    if (currentUrl.includes('atualizar-agendamento')) {
+    if (currentUrl.includes('atualizar-agendamento') && this.teamId !== 0) {
       // Faça alguma coisa se a URL for "atualizar-agendamento"
       this.getScheduleById(id);
     }
- 
-  }
+}
+
  
  
   getTeamByUrl(id: number) {
@@ -124,65 +126,37 @@ export class RegisterScheduleComponent implements OnInit {
     }
   }
  
-  getScheduleById(id: number) {
-    this.scheduleService.getSchedule(id).subscribe({
-      next: (data) => {
-        console.log('Received schedule data:', data);
-        this.isEditing = true;
-        this.populateFormWithData(data);
-      },
-      error: (error) => {
-        console.error('Erro ao recuperar o agendamento:', error);
-      },
-    });
-  }
-  
-  populateFormWithData(data: any) {
-    if (data && data.scheduleArray) {
-      const scheduleArray = this.formGroupSchedule.get('scheduleArray') as FormArray;
-  
-      // Limpar o array existente
-      scheduleArray.clear();
-  
-      // Preencher o array com os dados do agendamento
-      data.scheduleArray.forEach((scheduleItem: any) => {
-        const control = this.formBuilder.group({
-          time: [scheduleItem.time, [Validators.required]],
-          professor: [scheduleItem.professor, [Validators.required]],
-          classroom: [scheduleItem.classroom, [Validators.required]],
-          discipline: [scheduleItem.discipline, [Validators.required]],
+  getScheduleById(dayId: number) {
+    this.scheduleService.getSchedulesByDayOfWeek(this.teamId, dayId).subscribe({
+      next: data => {
+        // Use patchValue para preencher apenas campos presentes no objeto retornado
+        this.formGroupSchedule.patchValue({
+          scheduleArray: data,
         });
-        scheduleArray.push(control);
-      });
-    }
-  
-    // Preencher o restante do formulário
-    this.formGroupSchedule.patchValue({
-      weekday: data.weekday || '',
-      team: data.team || '',
+        this.isEditing = true;
+      }
     });
   }
-  
-    
   
  
   save() {
+    const scheduleArray = this.formGroupSchedule.value.scheduleArray.map((scheduleItem: any) => ({
+      ...scheduleItem,
+      weekday: this.weekDay,
+      team: this.teamId,
+    }));
     this.submitted = true;
     if (this.isEditing) {
-      console.log(this.formGroupSchedule.value);
+      console.log("form: ", this.formGroupSchedule.value);
       if (this.formGroupSchedule.valid) {
-        this.scheduleService.update(this.formGroupSchedule.value).subscribe({
+        this.scheduleService.update(scheduleArray, this.weekDayId).subscribe({
           next: () => {
             this.goBack();
           },
         });
       }
     } else {
-      const scheduleArray = this.formGroupSchedule.value.scheduleArray.map((scheduleItem: any) => ({
-        ...scheduleItem,
-        weekday: this.weekDay,
-        team: this.teamId,
-      }));
+      
  
       this.scheduleService.save(scheduleArray).subscribe({
         next: () => {

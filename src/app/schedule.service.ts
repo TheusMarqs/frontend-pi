@@ -22,11 +22,17 @@ export class ScheduleService {
     return this.http.post<Schedule>(this.url, schedule);
   }
 
-  update(schedule: Schedule): Observable<Schedule> {
-    return this.http.put<Schedule>(`${this.url}/${schedule.id}`, schedule);
+  update(schedules: Schedule[], weekDayId: number): Observable<Schedule[]> {
+    return this.http.put<Schedule[]>(`${this.url}/${weekDayId}`, schedules);
   }
+  
 
   delete(schedule: Schedule): Observable<void> {
     return this.http.delete<void>(`${this.url}/${schedule.id}`);
+  }
+
+  getSchedulesByDayOfWeek(teamId: number, dayOfWeek: number ): Observable<Schedule[]> {
+    const url = `${this.url}/${teamId}/${dayOfWeek}`;
+    return this.http.get<Schedule[]>(url);
   }
 }
