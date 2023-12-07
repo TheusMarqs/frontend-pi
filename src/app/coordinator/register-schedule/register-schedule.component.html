@@ -9,14 +9,16 @@
     <div formArrayName="scheduleArray" class="row mt-5">
       <div *ngFor="let schedule of getScheduleArrayControls(); let i = index" class="col-md-4">
         <div [formGroupName]="i">
-          <select formControlName="time" class="form-select mt-2">
+          <label class="mt-3" for="time">Selecione o horário da aula</label>
+          <select formControlName="time" class="form-select">
             <option *ngFor="let time of times" value="{{time.id}}">
               {{ time.time }}
             </option>
             <option value="0" *ngIf="times.length === 0" disabled>Nenhum horário cadastrado.</option>
           </select>
  
-          <select formControlName="classroom" class="form-select mt-2">
+          <label class="mt-3" for="time">Selecione a sala da aula</label>
+          <select formControlName="classroom" class="form-select">
             <option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
               {{ classroom.type | titlecase }} - {{classroom.number}}
             </option>
@@ -26,7 +28,8 @@
             <small class="text-danger">Sala inválida!</small>
           </div> -->
  
-          <select formControlName="discipline" class="form-select mt-2">
+          <label class="mt-3" for="discipline">Selecione a disciplina</label>
+          <select formControlName="discipline" class="form-select">
             <option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
               {{ discipline.name | titlecase }}
             </option>
@@ -36,7 +39,8 @@
             <small class="text-danger">Disciplina inválida!</small>
           </div> -->
  
-          <select formControlName="professor" class="form-select mt-2">
+          <label class="mt-3" for="professor">Selecione o professor</label>
+          <select formControlName="professor" class="form-select">
             <option *ngFor="let professor of professors" value="{{professor.id}}">
               {{ professor.name | titlecase }}
             </option>

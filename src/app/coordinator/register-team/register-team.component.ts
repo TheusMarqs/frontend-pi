@@ -32,7 +32,7 @@ export class RegisterTeamComponent {
       course: [, [Validators.required]],
       students: [, [Validators.required]],
       semester: [, [Validators.required]],
-      period: ['', [Validators.required, Validators.pattern(/\S/)]],
+      period: ['', [Validators.required, Validators.pattern(/^[A-Za-z ]+$/), Validators.pattern(/\S/)]],
       time: this.formBuilder.array([]),
     });
   }

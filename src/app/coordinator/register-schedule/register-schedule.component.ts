@@ -140,32 +140,38 @@ export class RegisterScheduleComponent implements OnInit {
   
  
   save() {
-    const scheduleArray = this.formGroupSchedule.value.scheduleArray.map((scheduleItem: any) => ({
-      ...scheduleItem,
-      weekday: this.weekDay,
-      team: this.teamId,
-    }));
     this.submitted = true;
-    if (this.isEditing) {
-      console.log("form: ", this.formGroupSchedule.value);
-      if (this.formGroupSchedule.valid) {
+    const scheduleArray = this.formGroupSchedule.value.scheduleArray
+      .filter((scheduleItem: any) => this.isScheduleItemFilled(scheduleItem))
+      .map((scheduleItem: any) => ({
+        ...scheduleItem,
+        weekday: this.weekDay,
+        team: this.teamId,
+      }));
+  
+    if (scheduleArray.length > 0) {
+      if (this.isEditing) {
         this.scheduleService.update(scheduleArray, this.weekDayId).subscribe({
+          next: () => {
+            this.goBack();
+          },
+        });
+      } else {
+        this.scheduleService.save(scheduleArray).subscribe({
           next: () => {
             this.goBack();
           },
         });
       }
     } else {
-      
- 
-      this.scheduleService.save(scheduleArray).subscribe({
-        next: () => {
-          this.goBack();
-        },
-      });
- 
+      console.log('Nenhum formulário preenchido para salvar.');
     }
   }
+  
+  private isScheduleItemFilled(scheduleItem: any): boolean {
+    return Object.values(scheduleItem).some(value => value !== null && value !== '');
+  }
+  
  
   cancel() {
     this.goBack();
@@ -206,9 +212,13 @@ export class RegisterScheduleComponent implements OnInit {
  
   loadProfessors() {
     this.professorService.getProfessors().subscribe({
-      next: (data) => (this.professors = data),
+      next: (data) => {
+        // Filtra os professores com status igual a true
+        this.professors = data.filter((professor) => professor.status === true);
+      },
     });
   }
+  
   loadClassrooms() {
     this.classroomService.getClassrooms().subscribe({
       next: (data) => (this.classrooms = data),

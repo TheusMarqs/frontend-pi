@@ -19,7 +19,7 @@ export class RegisterCourseComponent implements OnInit {
 
     this.formGroupCourse = formBuilder.group({
       id: [],
-      name: [, [Validators.required, Validators.pattern(/\S/)]],
+      name: [, [Validators.required, Validators.pattern(/^[A-Za-z ]+$/), Validators.pattern(/\S/)]],
       workload: ['', [Validators.required]],
       duration: [, [Validators.required]]
     });
