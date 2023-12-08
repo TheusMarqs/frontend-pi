@@ -18,12 +18,21 @@ import { ShowScheduleComponent } from './coordinator/show-schedule/show-schedule
 import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
 import { RegisterTimeComponent } from './coordinator/register-time/register-time.component';
 import { ShowTimeComponent } from './coordinator/show-time/show-time.component';
+import { ShowStudentScheduleComponent } from './student/show-student-schedule/show-student-schedule.component';
+import { ShowProfessorScheduleComponent } from './student/show-professor-schedule/show-professor-schedule.component';
+import { ChooseProfessorComponent } from './student/choose-professor/choose-professor.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'professor', component: ProfessorComponent},
-  {path: 'aluno', component: StudentComponent},
 
+  //ALUNO
+  {path: 'aluno', component: StudentComponent},
+  {path: 'aluno/exibir-agendamento-aluno/:id', component: ShowStudentScheduleComponent},
+  {path: 'aluno/escolher-professor', component: ChooseProfessorComponent},
+  {path: 'aluno/exibir-agendamento-professor/:id', component: ShowProfessorScheduleComponent},
+
+  //COORDENADOR
   //Agendamento de aulas
   {path: 'coordenador', component: CoordinatorComponent},
   {path: 'coordenador/exibir-agendamento/:id', component: ShowScheduleComponent},

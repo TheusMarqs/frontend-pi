@@ -1,0 +1,14 @@
+<app-header-student></app-header-student>
+<div class="container">
+  <div class="row gap-5">
+    <h1 class="display-6 text-center">Selecione o professor</h1>
+      <div *ngFor="let professor of professors" class="card mt-5" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{professor.name}}</h5>
+          <p class="card-text">{{professor.education}}</p>
+          <a [routerLink]="['/aluno/exibir-agendamento-professor/', professor.id]" class="btn btn-primary">Exibir
+            horários</a>
+        </div>
+    </div>
+  </div>
+</div>

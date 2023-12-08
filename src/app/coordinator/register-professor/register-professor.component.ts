@@ -30,7 +30,7 @@ export class RegisterProfessorComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    if(id) {
+    if (id) {
       this.getProfessorById(id);
     }
   }
@@ -58,11 +58,13 @@ export class RegisterProfessorComponent implements OnInit {
     }
 
     else {
-      this.professorService.save(this.formGroupProfessor.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador/exibir-professor']);
-        }
-      })
+      if (this.formGroupProfessor.valid) {
+        this.professorService.save(this.formGroupProfessor.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador/exibir-professor']);
+          }
+        })
+      }
     }
 
   }

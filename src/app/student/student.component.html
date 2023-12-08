@@ -1,1 +1,23 @@
-<p>student works!</p>
+<app-header-student></app-header-student>
+<div class="container">
+    <div class="row">
+      <div class="col-7 m-auto">
+        <div class="display-6 text-center mt-5">
+          Agendamento de aulas
+        </div>
+        <div class="text-center pt-5">
+          <p class="txt-inter fs-3 mt-5">Selecione a turma que deseja visualizar</p>
+          <select class="form-select mt-4" [(ngModel)]="selectedTeamId">
+            <option *ngFor="let team of teams" [value]="team.id">
+              {{ teamCourseMap[team.id] | titlecase }} - {{team.period | titlecase}} - {{team.semester}}º semestre
+            </option>
+            <option value="0" *ngIf="teams.length === 0" disabled>Nenhuma turma cadastrada.</option>
+          </select>
+          <button class="btn btn-fatec mt-5" (click)="navigateToSelectedTeam()">Continuar</button>
+        </div>
+  
+  
+      </div>
+    </div>
+  
+  </div>

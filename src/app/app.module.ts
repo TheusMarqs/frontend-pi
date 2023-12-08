@@ -27,6 +27,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RegisterScheduleComponent } from './coordinator/register-schedule/register-schedule.component';
 import { RegisterTimeComponent } from './coordinator/register-time/register-time.component';
 import { ShowTimeComponent } from './coordinator/show-time/show-time.component';
+import { HeaderStudentComponent } from './header-student/header-student.component';
+import { ShowStudentScheduleComponent } from './student/show-student-schedule/show-student-schedule.component';
+import { ShowProfessorScheduleComponent } from './student/show-professor-schedule/show-professor-schedule.component';
+import { ChooseProfessorComponent } from './student/choose-professor/choose-professor.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { ShowTimeComponent } from './coordinator/show-time/show-time.component';
     RegisterScheduleComponent,
     RegisterTimeComponent,
     ShowTimeComponent,
+    HeaderStudentComponent,
+    ShowStudentScheduleComponent,
+    ShowProfessorScheduleComponent,
+    ChooseProfessorComponent,
     
   ],
   imports: [

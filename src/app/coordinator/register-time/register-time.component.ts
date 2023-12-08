@@ -33,7 +33,7 @@ export class RegisterTimeComponent {
       this.times = times;
     });
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    if(id){
+    if (id) {
       this.getTimeById(id);
     }
 
@@ -62,11 +62,13 @@ export class RegisterTimeComponent {
     }
 
     else {
-      this.timeService.save(this.formGroupTime.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador/exibir-horario']);
-        }
-      })
+      if (this.formGroupTime.valid) {
+        this.timeService.save(this.formGroupTime.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador/exibir-horario']);
+          }
+        })
+      }
     }
 
   }

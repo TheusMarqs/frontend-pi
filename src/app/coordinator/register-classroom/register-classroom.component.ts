@@ -27,7 +27,7 @@ export class RegisterClassroomComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    if(id){
+    if (id) {
       this.getClassroomById(id);
     }
   }
@@ -55,11 +55,13 @@ export class RegisterClassroomComponent implements OnInit {
     }
 
     else {
-      this.classroomService.save(this.formGroupClassroom.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador/exibir-sala']);
-        }
-      })
+      if (this.formGroupClassroom.valid) {
+        this.classroomService.save(this.formGroupClassroom.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador/exibir-sala']);
+          }
+        })
+      }
     }
 
   }

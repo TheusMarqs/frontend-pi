@@ -62,11 +62,13 @@ export class RegisterDisciplineComponent {
     }
 
     else {
-      this.disciplineService.save(this.formGroupDiscipline.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador/exibir-disciplina']);
-        }
-      })
+      if (this.formGroupDiscipline.valid) {
+        this.disciplineService.save(this.formGroupDiscipline.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador/exibir-disciplina']);
+          }
+        })
+      }
     }
 
   }
