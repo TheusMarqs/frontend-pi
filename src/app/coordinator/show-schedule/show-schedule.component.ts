@@ -32,7 +32,7 @@ export class ShowScheduleComponent implements OnInit {
   times: Time[] = [];
   filteredSchedules: Schedule[] = [];
   classrooms: Classroom[] = [];
-  
+
 
   constructor(private teamService: TeamService,
     private route: ActivatedRoute,
@@ -76,7 +76,7 @@ export class ShowScheduleComponent implements OnInit {
 
     console.log('Team ID:', teamId);
     console.log('Schedules:', this.schedules);
-  
+
     this.filteredSchedules = this.schedules
       .filter(schedule => schedule.team === teamId)
       .sort((a, b) => {
@@ -84,7 +84,7 @@ export class ShowScheduleComponent implements OnInit {
         const dayB = weekdaysOrder.indexOf(b.weekday);
         return dayA - dayB;
       });
-  
+
     console.log('Filtered Schedules:', this.filteredSchedules);
   }
 
@@ -123,7 +123,7 @@ export class ShowScheduleComponent implements OnInit {
     this.teamService.getTeam(teamId).subscribe({
       next: (team) => {
         if (team) {
-          const courseId = team.course; // Obtém o ID do curso associado à turma
+          const courseId = team.course;
           this.getCourseName(courseId);
           this.teamById = team
         } else {
@@ -184,7 +184,6 @@ export class ShowScheduleComponent implements OnInit {
       next: (data) => {
         this.schedules = data;
         console.log('Schedules:', this.schedules);
-        // Chame o filterByTeam aqui para garantir que ele seja chamado após o carregamento
         const id = Number(this.route.snapshot.paramMap.get("id"));
         if (id){
           this.filterByTeam(id);
@@ -204,7 +203,7 @@ export class ShowScheduleComponent implements OnInit {
     const dayOfWeekId = this.getDayOfWeekId(schedule.weekday);
     this.router.navigate(['coordenador/atualizar-agendamento', idTeam, dayOfWeekId]);
   }
-  
+
   getDayOfWeekId(dayOfWeek: string): number {
     const weekdaysOrder = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     return weekdaysOrder.indexOf(dayOfWeek) + 1;

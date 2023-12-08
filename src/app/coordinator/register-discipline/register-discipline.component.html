@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
           <label for="name" class="form-label">Nome:</label>
-          <input type="text" pattern="[A-Za-z]+" formControlName="name" class="form-control" id="name" placeholder="Nome da disciplina">
+          <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome da disciplina">
           <div *ngIf="submitted && name.invalid">
             <small class="text-danger">Nome inválido!</small>
           </div>

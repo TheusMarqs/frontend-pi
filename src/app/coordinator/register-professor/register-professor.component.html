@@ -33,7 +33,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="education" class="form-label">Formação:</label>
-                    <input type="text" pattern="[A-Za-z]+" formControlName="education" class="form-control" id="education"
+                    <input type="text" formControlName="education" class="form-control" id="education"
                         placeholder="Formação">
                     <div *ngIf="submitted && education.invalid">
                         <small class="text-danger">Formação inválida!</small>

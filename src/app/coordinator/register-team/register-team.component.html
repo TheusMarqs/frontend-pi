@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3">
           <label for="period" class="form-label">Período:</label>
-          <input type="text" pattern="[A-Za-z]+" formControlName="period" class="form-control" id="period" placeholder="Período">
+          <input type="text" formControlName="period" class="form-control" id="period" placeholder="Período">
           <div *ngIf="submitted && period.invalid">
             <small class="text-danger">Período inválido!</small>
           </div>

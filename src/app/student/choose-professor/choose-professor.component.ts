@@ -5,7 +5,7 @@ import { Professor } from 'src/app/professors';
 @Component({
   selector: 'app-choose-professor',
   templateUrl: './choose-professor.component.html',
-  styleUrls: ['./choose-professor.component.css']
+  styleUrls: ['./choose-professor.component.css', '../../app.component.css']
 })
 export class ChooseProfessorComponent implements OnInit{
   professors: Professor[] = [];

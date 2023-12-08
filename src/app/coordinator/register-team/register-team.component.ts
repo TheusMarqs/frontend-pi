@@ -32,7 +32,7 @@ export class RegisterTeamComponent {
       course: [, [Validators.required]],
       students: [, [Validators.required]],
       semester: [, [Validators.required]],
-      period: ['', [Validators.required, Validators.pattern(/^[A-Za-z ]+$/), Validators.pattern(/\S/)]],
+      period: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       time: this.formBuilder.array([]),
     });
   }
@@ -40,7 +40,7 @@ export class RegisterTeamComponent {
   get timeArray(): FormArray {
     return this.formGroupTeam.get('time') as FormArray;
   }
-  
+
 
   ngOnInit(): void {
     this.loadCourses();
@@ -70,7 +70,7 @@ export class RegisterTeamComponent {
         while (this.timeArray.length !== 0) {
           this.timeArray.removeAt(0);
         }
-  
+
         this.formGroupTeam.setValue({
           id: data.id,
           course: data.course,
@@ -79,24 +79,24 @@ export class RegisterTeamComponent {
           period: data.period,
           time: []
         });
-  
+
         if (Array.isArray(data.time)) {
           data.time.forEach(timeId => {
             this.timeArray.push(this.formBuilder.control(timeId));
           });
         }
-  
+
         this.isEditing = true;
       }
     });
   }
-  
-  
+
+
 
 
   save() {
     this.submitted = true;
-  
+
     if (this.formGroupTeam.valid) {
       if (this.timeArray.length > 0) {
         if (this.isEditing) {
@@ -118,14 +118,14 @@ export class RegisterTeamComponent {
       }
     }
   }
-  
+
 
   toggleTime(timeId: number): void {
     const timeArray = this.timeArray;
-  
+
     // Check if the timeId is already in the array
     const index = timeArray.value.indexOf(timeId);
-  
+
     if (index === -1) {
       // If not in the array, add it
       timeArray.push(this.formBuilder.control(timeId));

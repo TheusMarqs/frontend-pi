@@ -1,1 +1,35 @@
-<p>show-professor-schedule works!</p>
+<app-header-student></app-header-student>
+
+<div class="container">
+  <button class="btn btn-fatec float-end mt-5 me-5" [routerLink]="['/aluno/escolher-professor']">Voltar</button>
+
+  <div class="row pt-3">
+    <div class="col-md-3 mt-5 d-flex">
+      <input class="form-control search" type="text" name="search" placeholder="Pesquisar... " [(ngModel)]="filter">
+    </div>
+  </div>
+
+
+  <table f class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Dia</th>
+        <th scope="col">Horário</th>
+        <th scope="col">Sala</th>
+        <th scope="col">Professor</th>
+        <th scope="col">Disciplina</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let schedule of filteredSchedule | filter : filter">
+        <th scope="row">{{schedule.id}}</th>
+        <td>{{schedule.weekday | titlecase }}</td>
+        <td>{{ getTimeString(schedule.id) }}</td>
+        <td>Sala {{getClassroomNumber(schedule.id)}}</td>
+        <td>{{ getProfessorName(schedule.id) | titlecase }}</td>
+        <td>{{ getDisciplineName(schedule.id) | titlecase }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

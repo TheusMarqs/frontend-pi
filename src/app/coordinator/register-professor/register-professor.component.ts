@@ -20,10 +20,10 @@ export class RegisterProfessorComponent implements OnInit {
 
     this.formGroupProfessor = formBuilder.group({
       id: [],
-      name: ['', [Validators.required, Validators.pattern(/^[A-Za-z ]+$/), Validators.pattern(/\S/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/\S/), Validators.minLength(8)]],
-      education: ['', [Validators.required, Validators.pattern(/^[A-Za-z ]+$/), Validators.pattern(/\S/)]],
+      education: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       status: [false]
     });
   }

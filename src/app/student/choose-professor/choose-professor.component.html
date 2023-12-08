@@ -4,9 +4,12 @@
     <h1 class="display-6 text-center">Selecione o professor</h1>
       <div *ngFor="let professor of professors" class="card mt-5" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{professor.name}}</h5>
-          <p class="card-text">{{professor.education}}</p>
-          <a [routerLink]="['/aluno/exibir-agendamento-professor/', professor.id]" class="btn btn-primary">Exibir
+          <h5 class="card-title mb-4">{{professor.name | titlecase}}</h5>
+          <p class="card-text">{{professor.education | titlecase}}</p>
+          <p *ngIf="professor.status == true" class="card-text">Ativo</p>
+          <p *ngIf="professor.status == false" class="card-text">Inativo</p>
+
+          <a [routerLink]="['/aluno/exibir-agendamento-professor/', professor.id]" class="btn btn-fatec">Exibir
             horários</a>
         </div>
     </div>
