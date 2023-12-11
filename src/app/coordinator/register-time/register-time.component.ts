@@ -22,7 +22,7 @@ export class RegisterTimeComponent {
 
     this.formGroupTime = formBuilder.group({
       id: [],
-      time: [, [Validators.required]],
+      time: ['', [Validators.required, Validators.pattern(/\S/)]],
     });
   }
 
