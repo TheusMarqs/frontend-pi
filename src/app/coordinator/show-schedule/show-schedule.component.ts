@@ -154,13 +154,23 @@ export class ShowScheduleComponent implements OnInit {
     return 'Agendamento não encontrado';
   }
 
-  getClassroomNumber(scheduleId: number): number | string {
+  getClassroomInfo(scheduleId: number): { number: number | string, type: string } {
+    const result = { number: '', type: '' };
+  
     const schedule = this.schedules.find((schedule) => schedule.id === scheduleId);
     if (schedule) {
       const classroom = this.classrooms.find((classroom) => classroom.id === schedule.classroom);
-      return classroom ? classroom.number : 'Sala não encontrada';
+      if (classroom) {
+        result.number = classroom.number.toString(); // Convertendo para string
+        result.type = classroom.type; // Supondo que 'type' seja o atributo desejado
+      } else {
+        result.number = 'Sala não encontrada';
+      }
+    } else {
+      result.number = 'Agendamento não encontrado';
     }
-    return 'Agendamento não encontrado';
+  
+    return result;
   }
 
   getCourseName(courseId: number) {

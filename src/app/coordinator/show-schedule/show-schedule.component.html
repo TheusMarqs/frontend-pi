@@ -30,7 +30,7 @@
                 <th scope="row">{{schedule.id}}</th>
                 <td>{{schedule.weekday | titlecase }}</td>
                 <td>{{ getTimeString(schedule.id) }}</td>
-                <td>Sala {{getClassroomNumber(schedule.id)}}</td>
+                <td *ngIf="getClassroomInfo(schedule.id) as classroomInfo">{{ classroomInfo.type | titlecase}}-{{ classroomInfo.number }}</td>
                 <td>{{ getProfessorName(schedule.id) | titlecase }}</td>
                 <td>{{ getDisciplineName(schedule.id) | titlecase }}</td>
                 <td>
